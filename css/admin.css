@@ -9,6 +9,36 @@ nav.navbar {
   border-top: 4px solid #276cda;
   /* margin-bottom: 1rem; */
 }
+.datamaps-arc {
+  animation: dash 5s linear infinite;
+}
+/* width: 34px;
+animation: pulse 3s ease infinite; */
+.datamaps-bubble {
+  animation: pulse 3s ease infinite;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1,1);
+    fill: red;
+    border-radius: 100%;
+  }
+  50% {
+    fill: orange;
+  }
+  100% {
+    /* transform: scale(1.5); */
+    fill: yellow;
+  }
+}
+@keyframes dash {
+  from {
+    stroke-dashoffset: 700;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 .longField {
   width: 300px;
   text-overflow: ellipsis;
