@@ -1,18 +1,33 @@
-// create an array with nodes
-var nodes = new vis.DataSet([
-    {id: 'router', label: 'Router', shape:'triangle', color:'green'},
-    {id: 2, label: 'Server'},
-    {id: 3, label: 'Server'},
-    {id: 4, label: 'spyware'},
-    {id: 5, label: 'phishtank'}
-]);
+var routers = [{type: 'router', SrcIP:'172.16.21.139'}, {type: 'router', SrcIP:'128.18.22.6'}];
+// {name: fireeye, type: threat}
+var rawData = ['adware','spyware','phishtank'];
+// dictionary [spyware:2, adware:4]
+
+var nodeSet = [];
+
+var nodeCount = 0;
+// loop through servers
+for (nodeCount=0; nodeCount<routers.length; nodeCount++) {
+  name = 'router' + routers[nodeCount].SrcIP;
+  obj = {id: nodeCount, label: name, shape:'triangle', color:'green'};
+  nodeSet.push(obj)
+}
+// maybe loop through threat by server?
+// loop through threats
+for (i=0; i<rawData.length; i++) {
+  obj = {id: nodeCount, label: rawData[i]};
+  nodeSet.push(obj)
+  nodeCount++;
+}
+console.log(nodeSet)
+var nodes = new vis.DataSet(nodeSet);
 
 // create an array with edges
 var edges = new vis.DataSet([
-    {from: 'router', to: 3},
-    {from: 'router', to: 2},
-    {from: 2, to: 4},
-    {from: 2, to: 5}
+  {from: 0, to: 2},
+  {from: 0, to: 1},
+  {from: 1, to: 3},
+  {from: 1, to: 4}
 ]);
 
 // create a network
