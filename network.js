@@ -8,7 +8,7 @@ var nodeSet = [];
 var nodeCount = 0;
 // loop through servers
 for (nodeCount=0; nodeCount<routers.length; nodeCount++) {
-  name = 'router' + routers[nodeCount].SrcIP;
+  name = 'router (' + routers[nodeCount].SrcIP + ')';
   obj = {id: nodeCount, label: name, shape:'triangle', color:'green'};
   nodeSet.push(obj)
 }
@@ -59,7 +59,8 @@ var options = {
   },
   physics: {
     enabled:false
-  }
+  },
+  manipulation: {enabled:true}
 };
 
 // initialize your network!
