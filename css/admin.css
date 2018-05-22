@@ -14,6 +14,9 @@ nav.navbar {
   height: 100%;
   border: 1px solid lightgray;
 }
+#mapid {
+  height: 100%;
+}
 .datamaps-arc {
   animation: dash 10s linear infinite;
   stroke-dasharray: 17, 17 !important;
