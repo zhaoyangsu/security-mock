@@ -15,6 +15,16 @@ for (ic=0; ic<nodes.length; ic++) {
   obj = {id: ic, label: node.node_name, shape:node.shape, color:node.color, group: node.type, zone:node.zone, };
   nodeSet.push(obj)
 }
+
+// legend
+// var mynetwork = document.getElementById('network-example');
+// var x = - mynetwork.clientWidth / 2 + 50;
+// var y = - mynetwork.clientHeight / 2 + 50;
+// var step = 70;
+// nodeSet.push({id: 1000, x: x, y: y, label: 'virtual_machine', group: 'virtual_machine', fixed: true, size:15});
+// nodeSet.push({id: 1001, x: x, y: y + step, label: 'router', group: 'router', fixed: true, size:15});
+// nodeSet.push({id: 1002, x: x, y: y + 2 * step, label: 'other', group: 'other', fixed: true, size:10});
+
 // maybe loop through threat by server?
 // loop through threats
 //console.log(nodeSet)
@@ -71,15 +81,108 @@ var options = {
     },
     'other': {
       shape: "circle",
-      color: "blue",
-      font: {color:'white'}
+      color: "rgb(151,196,250)",
+      font: {
+        color:'white'
+      }
     }
   },
   manipulation: {enabled:true}
 };
 
+// Everything is in there
+const makeMeMultiSelect = (container, network, nodes) => {
+		const NO_CLICK = 0;
+		const RIGHT_CLICK = 3;
+
+    // Disable default right-click dropdown menu
+    container.oncontextmenu = () => false;
+
+    // State
+    let drag = false, DOMRect = {};
+
+    // Selector
+    const canvasify = (DOMx, DOMy) => {
+  		const { x, y } = network.DOMtoCanvas({ x: DOMx, y: DOMy });
+    	return [x, y];
+    };
+
+    const correctRange = (start, end) =>
+        start < end ? [start, end] : [end, start];
+
+    const selectFromDOMRect = () => {
+      const [sX, sY] = canvasify(DOMRect.startX, DOMRect.startY);
+      const [eX, eY] = canvasify(DOMRect.endX, DOMRect.endY);
+      const [startX, endX] = correctRange(sX, eX);
+      const [startY, endY] = correctRange(sY, eY);
+
+      network.selectNodes(nodes.get().reduce(
+        (selected, { id }) => {
+          const { x, y } = network.getPositions(id)[id];
+          return (startX <= x && x <= endX && startY <= y && y <= endY) ?
+            selected.concat(id) : selected;
+        }, []
+      ));
+    }
+
+    // Listeners
+    container.onmousedown = function({ which, pageX, pageY }) {
+  		// When mousedown, save the initial rectangle state
+      if(which === RIGHT_CLICK) {
+        Object.assign(DOMRect, {
+            startX: pageX - this.offsetLeft,
+            startY: pageY - this.offsetTop,
+            endX: pageX - this.offsetLeft,
+            endY: pageY - this.offsetTop
+        });
+        drag = true;
+      }
+    };
+
+    container.onmousemove = function({ which, pageX, pageY }) {
+    		// Make selection rectangle disappear when accidently mouseupped outside 'container'
+        if(which === NO_CLICK && drag) {
+            drag = false;
+            network.redraw();
+        }
+        // When mousemove, update the rectangle state
+        else if(drag) {
+            Object.assign(DOMRect, {
+                endX: pageX - this.offsetLeft,
+                endY: pageY - this.offsetTop
+            });
+            network.redraw();
+        }
+    };
+
+    container.onmouseup = function({ which }) {
+    		// When mouseup, select the nodes in the rectangle
+        if(which === RIGHT_CLICK) {
+            drag = false;
+            network.redraw();
+            selectFromDOMRect();
+        }
+    };
+
+    // Drawer
+    network.on('afterDrawing', ctx => {
+      if (drag) {
+        const [startX, startY] = canvasify(DOMRect.startX, DOMRect.startY);
+        const [endX, endY] = canvasify(DOMRect.endX, DOMRect.endY);
+
+        ctx.setLineDash([5]);
+        ctx.strokeStyle = 'rgba(78, 146, 237, 0.75)';
+        ctx.strokeRect(startX, startY, endX - startX, endY - startY);
+        ctx.setLineDash([]);
+        ctx.fillStyle = 'rgba(151, 194, 252, 0.45)';
+        ctx.fillRect(startX, startY, endX - startX, endY - startY);
+      }
+    });
+}; // end makeMeMultiSelect
+
 // initialize your network!
 var network = new vis.Network(container, data, options);
+makeMeMultiSelect(container, network, nodes);
 
 // on add node send JSON object to rest API
 // grouping for each nodes, virtual lines to group nodes
