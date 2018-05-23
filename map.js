@@ -1,30 +1,26 @@
 //basic map config with custom fills, mercator projection
 var map = new Datamap({
- scope: 'usa',
- element: document.getElementById('map'),
- projection: 'mercator',
- height: 700,
- fills: {
-   defaultFill: 'rgb(12,56,118)',
-   lt50: 'rgb(66,42,56)',
-   gt50: 'rgb(14,41,59)',
-   highC: 'rgb(238,219,41)',
-   keepOrange: 'rgb(206,66,27)'
- },
- data: {
-   USA: {fillKey: 'lt50' },
-   RUS: {fillKey: 'lt50' },
-   CAN: {fillKey: 'lt50' },
-   BRA: {fillKey: 'gt50' },
-   ARG: {fillKey: 'gt50'},
-   COL: {fillKey: 'gt50' },
-   AUS: {fillKey: 'gt50' },
-   ZAF: {fillKey: 'gt50' },
-   MAD: {fillKey: 'gt50' }
- },
- arcConfig: {
-   strokeColor: 'rgb(238,219,41)'
- }
+  element: document.getElementById('map'),
+  geographyConfig: {
+   // dataUrl: 'https://raw.githubusercontent.com/markmarkoh/datamaps/master/src/js/data/chn.topo.json',
+   dataJson: 'chn.topo.json'
+  },
+  scope: 'world',
+  height: 700,
+  fills: {
+    lt50: 'rgb(66,42,56)'
+  },
+  data: {
+    CHN: {fillKey: 'lt50' }
+  },
+  // projection: 'mercator',
+  setProjection: function (element) {
+    var projection = d3.geo.mercator()
+      .center([90.49, 40.09]) // always in [East Latitude, North Longitude]
+      .scale(700);
+    var path = d3.geo.path().projection(projection);
+    return { path: path, projection: projection };
+  },
 })
 
 // Beijing Lat and Long
@@ -66,6 +62,8 @@ var map = new Datamap({
 var data = [{"latitude":"36.37790","longitude":"-120.95437","128.18.22.151":"2","208.73.210.29":"1"},{"latitude":"27.99870","longitude":"-82.51560","198.178.124.50":"3"},{"latitude":"32.15080","longitude":"34.88830","62.0.0.115":"4"},{"latitude":"47.60620","longitude":"-122.33210","174.37.172.101":"1"},{"latitude":"27.99870","longitude":"-82.51560","198.178.124.50":"3"},{"latitude":"32.15080","longitude":"34.88830","62.0.0.115":"4"},{"latitude":"36.37790","longitude":"-120.95437","128.18.22.151":"2","208.73.210.29":"1"},{"latitude":"47.60620","longitude":"-122.33210","174.37.172.101":"1"},{"latitude":"27.99870","longitude":"-82.51560","198.178.124.50":"3"},{"latitude":"32.15080","longitude":"34.88830","62.0.0.115":"4"},{"latitude":"36.37790","longitude":"-120.95437","128.18.22.151":"2","208.73.210.29":"1"},{"latitude":"47.60620","longitude":"-122.33210","174.37.172.101":"1"},{"latitude":"27.99870","longitude":"-82.51560","198.178.124.50":"3"},{"latitude":"32.15080","longitude":"34.88830","62.0.0.115":"4"},{"latitude":"34.05330","longitude":"-118.25490","208.73.210.29":"1"},{"latitude":"37.54020","longitude":"-122.30410","128.18.22.151":"2"},{"latitude":"47.60620","longitude":"-122.33210","174.37.172.101":"1"},{"latitude":"27.99870","longitude":"-82.51560","198.178.124.50":"3"},{"latitude":"32.15080","longitude":"34.88830","62.0.0.115":"4"},{"latitude":"34.05330","longitude":"-118.25490","208.73.210.29":"1"},{"latitude":"37.54020","longitude":"-122.30410","128.18.22.151":"2"},{"latitude":"47.60620","longitude":"-122.33210","174.37.172.101":"1"},{"latitude":"27.99870","longitude":"-82.51560","198.178.124.50":"3"},{"latitude":"32.15080","longitude":"34.88830","62.0.0.115":"4"},{"latitude":"34.05330","longitude":"-118.25490","208.73.210.29":"1"},{"latitude":"37.54020","longitude":"-122.30410","128.18.22.151":"2"},{"latitude":"47.60620","longitude":"-122.33210","174.37.172.101":"1"},{"latitude":"27.99870","longitude":"-82.51560","198.178.124.50":"3"},{"latitude":"32.15080","longitude":"34.88830","62.0.0.115":"4"},{"latitude":"34.05330","longitude":"-118.25490","208.73.210.29":"1"},{"latitude":"37.54020","longitude":"-122.30410","128.18.22.151":"2"},{"latitude":"47.60620","longitude":"-122.33210","174.37.172.101":"1"},{"latitude":"27.99870","longitude":"-82.51560","198.178.124.50":"3"},{"latitude":"32.15080","longitude":"34.88830","62.0.0.115":"4"},{"latitude":"34.05330","longitude":"-118.25490","208.73.210.29":"1"},{"latitude":"37.54020","longitude":"-122.30410","128.18.22.151":"2"},{"latitude":"47.60620","longitude":"-122.33210","174.37.172.101":"1"},{"latitude":"27.99870","longitude":"-82.51560","198.178.124.50":"3"},{"latitude":"32.15080","longitude":"34.88830","62.0.0.115":"4"},{"latitude":"34.05330","longitude":"-118.25490","208.73.210.29":"1"},{"latitude":"37.54020","longitude":"-122.30410","128.18.22.151":"2"},{"latitude":"47.60620","longitude":"-122.33210","174.37.172.101":"1"},{"latitude":"27.99870","longitude":"-82.51560","198.178.124.50":"3"},{"latitude":"32.15080","longitude":"34.88830","62.0.0.115":"4"},{"latitude":"34.05330","longitude":"-118.25490","208.73.210.29":"1"},{"latitude":"37.54020","longitude":"-122.30410","128.18.22.151":"2"},{"latitude":"47.60620","longitude":"-122.33210","174.37.172.101":"1"}];
 
 //bubbles, custom popup on hover template
+
+
 var geoPins = [];
 data.forEach(function(geo) {
   // sometimes there are two ip addresses with counts
