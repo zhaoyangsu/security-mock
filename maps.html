@@ -17,13 +17,16 @@
 <body>
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="http://d3js.org/topojson.v1.min.js"></script>
-  <!-- I recommend you host this file on your own, since this will change without warning -->
-  <script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
-  <!-- <script src="https://raw.githubusercontent.com/markmarkoh/datamaps/master/dist/datamaps.chn.js"></script> -->
+  <!-- <script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script> -->
+  <script src="datamaps.chn.js"></script>
   <div id="navbar">
     <nav-bar></nav-bar>
   </div>
-  <div id="map" style="position: relative; width: 80%; max-height: 450px;"></div>
+  <div style="display:flex">
+    <img id="naMap" style="height:200px;" src="public/americas.svg">
+    <div id="map" style="position: relative; width: 40%;"></div>
+    <img id="europeMap" style="height:200px; margin-left:50px;" src="public/europe.svg">
+  </div>
 </body>
 <script src="map.js"></script>
 <script src="navbar.js"></script>
