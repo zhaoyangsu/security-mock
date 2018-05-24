@@ -22,10 +22,14 @@
   <div id="navbar">
     <nav-bar></nav-bar>
   </div>
+  <!-- TODO put both svgs into one svg container -->
+  <svg class="data-line" width="100%" height="100%"><line x1="100" y1="120" x2="542" y2="235"/>
+  <svg class="data-line" style="animation-direction:reverse;" width="100%" height="100%">
+    <line  x1="542" y1="235" x2="817" y2="120"/></svg>
   <div style="display:flex">
     <img id="naMap" style="height:200px;" src="public/americas.svg">
-    <div id="map" style="position: relative; width: 40%;"></div>
-    <img id="europeMap" style="height:200px; margin-left:50px;" src="public/europe.svg">
+    <div id="map" style="position: relative; width: 550px;"></div>
+    <img id="euMap" style="height:200px;" src="public/europe.svg">
   </div>
 </body>
 <script src="map.js"></script>

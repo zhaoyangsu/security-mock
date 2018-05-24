@@ -72,6 +72,14 @@ var map = new Datamap({
   }
 })
 
+getCenter = (element) => {
+  var dR = element.getBoundingClientRect();
+  var x = dR.bottom/2;
+  var y = dR.right/2 - 54;
+  // subtract height of navbar
+  console.log(x, y)
+};
+getCenter(document.getElementById("euMap"))
 // data taken from splunk maps and processed
 // var dataSet = [];
 // data.forEach(function(geo, index) {
