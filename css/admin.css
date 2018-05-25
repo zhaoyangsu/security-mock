@@ -10,8 +10,6 @@ nav.navbar {
   /* margin-bottom: 1rem; */
 }
 .data-line {
-  z-index: 1;
-  position:absolute;
   stroke-linecap: round;
   stroke: rgb(221, 28, 119);
   fill: none;

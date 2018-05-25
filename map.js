@@ -40,7 +40,7 @@ var map = new Datamap({
     //   }
     // });
     map.bubbles([
-      {name: 'Data Center', latitude: 39.913818, longitude: 116.363625, radius: 12, fillKey: 'keepOrange'},
+      {name: 'Data Center', latitude: 39.913818, longitude: 116.363625, radius: 15, fillKey: 'keepOrange'},
       {name: 'Data Center', latitude: 25.6540, longitude: 114.1812, radius: 12, fillKey: 'keepOrange'},
       {name: 'Data Center', latitude: 36, longitude: 88, radius: 12, fillKey: 'keepOrange'},
     ]);
@@ -72,14 +72,15 @@ var map = new Datamap({
   }
 })
 
-getCenter = (element) => {
-  var dR = element.getBoundingClientRect();
-  var x = dR.bottom/2;
-  var y = dR.right/2 - 54;
-  // subtract height of navbar
-  console.log(x, y)
-};
-getCenter(document.getElementById("euMap"))
+// getCenter = (element) => {
+//   var dR = element.getBoundingClientRect();
+//   var x = dR.bottom/2;
+//   var y = dR.right/2 - 54;
+//   // subtract height of navbar
+//   console.log(x, y)
+// };
+// getCenter(document.getElementById("euMap"))
+
 // data taken from splunk maps and processed
 // var dataSet = [];
 // data.forEach(function(geo, index) {
