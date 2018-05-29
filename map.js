@@ -72,6 +72,11 @@ var map = new Datamap({
   }
 })
 
+document.getElementById('data-line-container').onclick = function(e) {
+  // y coordinate seems slightly off, x is perfect
+  console.log(e.layerX, e.layerY)
+  console.log(e)
+}
 // getCenter = (element) => {
 //   var dR = element.getBoundingClientRect();
 //   var x = dR.bottom/2;
