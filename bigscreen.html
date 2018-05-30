@@ -21,21 +21,26 @@
   <div id="navbar">
     <nav-bar></nav-bar>
   </div>
+  <!-- how to draw lines on a div without regard to where the map is-->
   <!-- <svg id="data-line-container" width="100%" height="100%">
     <line class="data-line" x1="125" y1="133" x2="584" y2="238"/>
     <line class="data-line" style="animation-direction:reverse;" x1="584" y1="238" x2="887" y2="132"/>
     <line class="data-line" style="animation-direction:reverse;" x1="584" y1="238" x2="868" y2="297"/>
   </svg> -->
-  <div style="display:flex; justify-content:center;">
-    <div style='display:flex; flex-direction: column;'>
-      <img style="height:200px;" src="public/americas.svg">
-      <img style="height:190px; margin-top:20px; margin-left:10px;" src="public/aus.svg">
+  <div style='display:flex; justify-content:center;'>
+    <img style="height:300px; margin-top:100px; margin-right:50px;" src="public/bar.png">
+    <div id="map-container" style="display:flex; justify-content:center;">
+      <div style='display:flex; flex-direction: column;'>
+        <img style="height:200px;" src="public/americas.svg">
+        <img style="height:190px; margin-top:20px; margin-left:10px;" src="public/aus.svg">
+      </div>
+      <div id="map" style="position: relative; width: 550px;"></div>
+      <div style='display:flex; flex-direction: column;'>
+        <img style="height:200px;" src="public/europe.svg">
+        <img style="height:200px; margin-top:20px;" src="public/africa.svg">
+      </div>
     </div>
-    <div id="map" style="position: relative; width: 550px;"></div>
-    <div style='display:flex; flex-direction: column;'>
-      <img style="height:200px;" src="public/europe.svg">
-      <img style="height:200px; margin-top:20px;" src="public/africa.svg">
-    </div>
+    <img style="height:300px; margin-top:100px; margin-left:50px;" src="public/circle.png">
   </div>
   <div id="app" class="container">
     <div class="columns">
