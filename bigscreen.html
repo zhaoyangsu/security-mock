@@ -20,6 +20,11 @@
   <script src="public/topojson.v1.min.js"></script>
   <script src="public/datamaps.chn.js"></script>
   <script src="public/Chart.bundle.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+  <script type="text/javascript" src="public/jsgrid.js"></script>
   <div id="navbar">
     <nav-bar></nav-bar>
   </div>
@@ -53,45 +58,11 @@
     <!-- <img draggable="false" style="height:300px; margin-top:100px; margin-left:50px;" src="public/circle.png"> -->
   </div>
   <div id="app" class="container">
-    <div class="columns">
-      <div class="column is-12">
-        <bread-crumb></bread-crumb>
-        <table class="table is-striped is-hoverable">
-        <thead>
-          <tr>
-            <th><abbr title="Position">source_id</abbr></th>
-            <th>source_path</th>
-            <th><abbr title="Played">threat_type</abbr></th>
-            <th><abbr title="Drawn">threat_category</abbr></th>
-            <th><abbr title="Won">threat_count</abbr></th>
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-            <th><abbr title="Position">source_id</abbr></th>
-            <th>source_path</th>
-            <th><abbr title="Played">threat_type</abbr></th>
-            <th><abbr title="Drawn">threat_category</abbr></th>
-            <th><abbr title="Won">threat_count</abbr></th>
-          </tr>
-        </tfoot>
-        <tbody>
-          <tr v-for="threat in threats">
-            <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">{{ threat.result.source_id }}</a>
-            </td>
-            <td class="longField">{{ threat.result.source_path }}</td>
-            <td>{{ threat.result.source_type }}</td>
-            <td>{{ threat.result.threat_category }}</td>
-            <td>{{ threat.result.count }}</td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-    </div>
+    <div id="jsGrid" style="margin-top:12px;"></div>
   </div>
 </body>
 <script src="navbar.js"></script>
-<script src="vuetable.js"></script>
+<script src="table.js"></script>
 <script src="map.js"></script>
 <script src="chart.js"></script>
 </html>
