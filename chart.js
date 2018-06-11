@@ -42,6 +42,8 @@ var myPieChart = new Chart(circle,{
     // options: options
 });
 
+Chart.defaults.global.defaultFontColor = 'white';
+
 var myChart = new Chart(ctx, {
     type: 'horizontalBar',
     data: {
