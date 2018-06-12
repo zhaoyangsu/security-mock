@@ -16,12 +16,13 @@
   <script src="public/d3.v3.min.js"></script>
   <script src="public/topojson.v1.min.js"></script>
   <script src="public/datamaps.chn.js"></script>
-  <script src="public/Chart.bundle.min.js"></script>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
   <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
   <script type="text/javascript" src="public/jsgrid.js"></script>
+
+  <script type="text/javascript" src="public/echarts.js"></script>
   <div id="navbar">
     <nav-bar></nav-bar>
   </div>
@@ -34,8 +35,7 @@
   <div style='display:flex; justify-content:center; color:rgba(117,240,255); margin-top: 5px; margin-bottom: 10px; font-size: 2rem;'>中国区政务云安全态势感知</div>
   <div style='display:flex; justify-content:center;'>
     <!-- <img draggable="false" style="height:300px; margin-top:100px; margin-right:50px;" src="public/bar.png"> -->
-    <div style="position: relative; height:300px; width:400px; margin-top:100px; margin-right:50px;">
-      <canvas id="circle" ></canvas>
+    <div id="nestedPie" style="position: relative; margin-top:100px; margin-right:50px; height:500px; width:700px;"></>
     </div>
     <div id="map-container" style="display:flex; justify-content:center;">
       <div style='display:flex; flex-direction: column;'>
@@ -49,9 +49,7 @@
         <img style="height:200px; margin-top:20px;" src="public/africa.svg">
       </div>
     </div>
-    <div style="height:300px; margin-top:100px; margin-left:50px;">
-      <canvas id="chart"></canvas>
-    </div>
+    <div style="height:300px; width:400px; margin-left:50px;" id="barGraph"></div>
   </div>
   <div id="app" class="container">
     <div id="jsGrid" style="margin-top:12px;"></div>
@@ -60,5 +58,6 @@
 <script src="navbar.js"></script>
 <script src="table.js"></script>
 <script src="map.js"></script>
-<script src="chart.js"></script>
+<script src="nestedpie.js"></script>
+<script src="bargraph.js"></script>
 </html>
