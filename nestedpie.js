@@ -14,7 +14,19 @@ option = {
     legend: {
         orient: 'vertical',
         x: 'left',
-        data:['直达','营销广告','搜索引擎','邮件营销','联盟广告','视频广告','百度','谷歌','必应','其他']
+        data:['直达','营销广告','搜索引擎','邮件营销','联盟广告','视频广告','百度','谷歌','必应','其他'],
+        textStyle: {
+          color:"rgb(125,149,193)"
+        }
+    },
+    backgroundColor: {
+      type: 'linear',
+      x: 0, y: 0, x2: 0, y2: 1,
+      colorStops: [{
+        offset: 0, color: 'rgb(9,31,66)' // color at 0% position
+      }, {
+        offset: 1, color: 'rgb(3,22,51)' // color at 100% position
+      }],
     },
     series: [
         {

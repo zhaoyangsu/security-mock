@@ -13,18 +13,28 @@ var worldIcons = {
 };
 
 option = {
+  color: ['rgb(247,132,58)','rgb(36,146,215)'],
   title: {
-    text: 'Wheater Statistics'
+    left: '35%',
+    text: 'Wheater Statistics',
+    textStyle: {color: 'rgb(117,240,255)'}
   },
-  grid: {
-    left: 100
+  // linear gradient background color
+  backgroundColor: {
+    type: 'linear',
+    x: 0, y: 0, x2: 0, y2: 1,
+    colorStops: [{
+      offset: 0, color: 'rgb(9,31,66)' // color at 0% position
+    }, {
+      offset: 1, color: 'rgb(3,22,51)' // color at 100% position
+    }],
   },
+  // margin-left for legend
+  grid: { left: 100 },
   xAxis: {
     type: 'value',
-    name: 'Days',
-    axisLabel: {
-      formatter: '{value}'
-    }
+    axisLabel: {formatter: '{value}', color:"rgb(125,149,193)"},
+    position: 'top'
   },
   yAxis: {
     type: 'category',
@@ -35,11 +45,12 @@ option = {
         value) {
         return '{' + value + '| }\n{value|' + value + '}';
       },
-      // righ margin from bar
       margin: 20,
+      // #ffffff hide with font color
+      color: 'rgb(9,31,66)',
       rich: {
         value: {
-          lineHeight: 30,
+          lineHeight: 0,
           align: 'center'
         },
         Albania: {
@@ -65,9 +76,7 @@ option = {
         Japan: {
           height: 20,
           align: 'center',
-          backgroundColor: {
-            image: worldIcons.Japan
-          }
+          backgroundColor: {image: worldIcons.Japan}
         }
       }
     }
@@ -76,6 +85,7 @@ option = {
       name: 'City Alpha',
       type: 'bar',
       data: [517,495,188,177,150],
+      barWidth: '20%'
     }
   ]
 };
