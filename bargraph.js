@@ -4,16 +4,12 @@ var app = {};
 option = null;
 app.title = '极坐标系下的堆叠柱状图';
 
-// {name: '浏览',icon: 'image://flags/Albania.png'},
-// {name: '浏览',icon: 'image://flags/Russian_Federation.png'},
-// {name: '浏览',icon: 'image://flags/United_States_of_America.png'},
-// {name: '浏览',icon: 'image://flags/South_Korea.png'},
-// {name: '浏览',icon: 'image://flags/Japan.png'},
-
-var weatherIcons = {
-  'Sunny': 'flags/Albania.png',
-  'Cloudy': 'flags/Russian_Federation.png',
-  'Showers': 'flags/United_States_of_America.png'
+var worldIcons = {
+  'Albania': 'flags/Albania.png',
+  'Russia': 'flags/Russian_Federation.png',
+  'America': 'flags/United_States_of_America.png',
+  'SouthKorea': 'flags/South_Korea.png',
+  'Japan': 'flags/Japan.png'
 };
 
 option = {
@@ -33,7 +29,7 @@ option = {
   yAxis: {
     type: 'category',
     inverse: true,
-    data: ['Sunny', 'Cloudy', 'Showers'],
+    data: ['Albania','Russia', 'South_Korea', 'America', 'Japan'],
     axisLabel: {
       formatter: function(
         value) {
@@ -46,25 +42,31 @@ option = {
           lineHeight: 30,
           align: 'center'
         },
-        Sunny: {
+        Albania: {
           height: 20,
           align: 'center',
-          backgroundColor: {
-            image: weatherIcons.Sunny
-          }
+          backgroundColor: {image: worldIcons.Albania}
         },
-        Cloudy: {
+        Russia: {
           height: 20,
           align: 'center',
-          backgroundColor: {
-            image: weatherIcons.Cloudy
-          }
+          backgroundColor: {image: worldIcons.Russia}
         },
-        Showers: {
+        South_Korea: {
+          height: 20,
+          align: 'center',
+          backgroundColor: {image: worldIcons.SouthKorea}
+        },
+        America: {
+          height: 20,
+          align: 'center',
+          backgroundColor: {image: worldIcons.America}
+        },
+        Japan: {
           height: 20,
           align: 'center',
           backgroundColor: {
-            image: weatherIcons.Showers
+            image: worldIcons.Japan
           }
         }
       }
@@ -73,15 +75,7 @@ option = {
   series: [{
       name: 'City Alpha',
       type: 'bar',
-      data: [517],
-    }, {
-      name: 'City Beta',
-      type: 'bar',
-      data: [150]
-    }, {
-      name: 'City Gamma',
-      type: 'bar',
-      data: [220]
+      data: [517,495,188,177,150],
     }
   ]
 };
