@@ -5,7 +5,7 @@ option = null;
 app.title = '极坐标系下的堆叠柱状图';
 
 var worldIcons = {
-  'Albania': 'flags/Albania.png',
+  'China': 'flags/China.png',
   'Russia': 'flags/Russian_Federation.png',
   'America': 'flags/United_States_of_America.png',
   'SouthKorea': 'flags/South_Korea.png',
@@ -39,55 +39,61 @@ option = {
   yAxis: {
     type: 'category',
     inverse: true,
-    data: ['Albania','Russia', 'South_Korea', 'America', 'Japan'],
+    data: ['China','Russia', 'South_Korea', 'America', 'Japan'],
     axisLabel: {
-      formatter: function(
-        value) {
+      formatter: function(value) {
         return '{' + value + '| }\n{value|' + value + '}';
       },
       margin: 20,
-      // #ffffff hide with font color
+      // #ffffff hide with  color
       color: 'rgb(9,31,66)',
       rich: {
         value: {
           lineHeight: 0,
-          align: 'center'
-        },
-        Albania: {
-          height: 20,
           align: 'center',
-          backgroundColor: {image: worldIcons.Albania}
+          // fontSize 1 to hide the text, use icons
+          fontSize: 1,
+          height: 20,
+        },
+        China: {
+          backgroundColor: {image: worldIcons.China}
         },
         Russia: {
-          height: 20,
-          align: 'center',
           backgroundColor: {image: worldIcons.Russia}
         },
         South_Korea: {
-          height: 20,
-          align: 'center',
           backgroundColor: {image: worldIcons.SouthKorea}
         },
         America: {
-          height: 20,
-          align: 'center',
           backgroundColor: {image: worldIcons.America}
         },
         Japan: {
-          height: 20,
-          align: 'center',
           backgroundColor: {image: worldIcons.Japan}
         }
       }
     }
   },
   series: [{
-      name: 'City Alpha',
-      type: 'bar',
-      data: [517,495,188,177,150],
-      barWidth: '20%'
+    name: 'City Alpha',
+    type: 'bar',
+    data: [{value: 517, ip: '222.11.11.120', itemStyle: {color: 'rgb(36,146,215)'}},
+    {value: 495, ip: '194.1.239.124', itemStyle: {color: 'rgb(232,124,57)'}},
+    {value: 188, ip: '147.43.12.215', itemStyle: {color: 'rgb(166,197,57)'}},
+    {value: 177, ip: '104.244.14.252', itemStyle: {color: 'rgb(134,143,245)'}},
+    {value: 150, ip: '49.156.170.241', itemStyle: {color: 'rgb(182,142,217)'}}],
+    barWidth: '20%',
+    label: {
+      normal: {
+        // color:function(params) {
+        //   console.log(params.dataIndex)
+        // },
+        show: true,
+        formatter: function(value) {
+          return value.data.ip;
+        }
+      }
     }
-  ]
+  }]
 };
 if (option && typeof option === "object") {
     myChart.setOption(option, true);
