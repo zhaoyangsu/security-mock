@@ -111,19 +111,20 @@
     border-right: none;
 }
 
-.jsgrid-row > .jsgrid-cell {
+/* .jsgrid-row > .jsgrid-cell {
     background: #fff;
 }
 
 .jsgrid-alt-row > .jsgrid-cell {
     background: #fcfcfc;
-}
+} */
 
 .jsgrid-header-row > .jsgrid-header-cell {
-    background: #f9f9f9;
+  background: rgba(0,13,41);
+  color:rgb(117,240,255);
 }
 
-.jsgrid-filter-row > .jsgrid-cell {
+/* .jsgrid-filter-row > .jsgrid-cell {
     background: #fcfcfc;
 }
 
@@ -142,7 +143,7 @@
 
 .jsgrid-nodata-row > .jsgrid-cell {
     background: #fff;
-}
+} */
 
 .jsgrid-invalid input,
 .jsgrid-invalid select,
