@@ -15,7 +15,7 @@ var worldIcons = {
 option = {
   color: ['rgb(247,132,58)','rgb(36,146,215)'],
   title: {
-    left: '35%',
+    left: '7%',
     text: 'Wheater Statistics',
     textStyle: {color: 'rgb(117,240,255)'}
   },
@@ -73,27 +73,48 @@ option = {
       }
     }
   },
-  series: [{
-    name: 'City Alpha',
-    type: 'bar',
-    data: [{value: 517, ip: '222.11.11.120', itemStyle: {color: 'rgb(36,146,215)'}},
-    {value: 495, ip: '194.1.239.124', itemStyle: {color: 'rgb(232,124,57)'}},
-    {value: 188, ip: '147.43.12.215', itemStyle: {color: 'rgb(166,197,57)'}},
-    {value: 177, ip: '104.244.14.252', itemStyle: {color: 'rgb(134,143,245)'}},
-    {value: 150, ip: '49.156.170.241', itemStyle: {color: 'rgb(182,142,217)'}}],
-    barWidth: '20%',
-    label: {
-      normal: {
-        // color:function(params) {
-        //   console.log(params.dataIndex)
-        // },
-        show: true,
-        formatter: function(value) {
-          return value.data.ip;
+  series: [
+    { // For shadow
+      type: 'bar',
+      itemStyle: {
+        normal: {color: 'rgb(19,56,86)'}
+      },
+      barGap:'-100%',
+      barCategoryGap:'40%',
+      barWidth: '20%',
+      data: [600,600,600,600,600],
+      animation: false,
+      // label: {
+      //   normal: {
+      //     show: true,
+      //     position: 'right',
+      //     color: 'rgb(36,146,215)',
+      //     formatter: function(value) {
+      //       // console.log(value)
+      //       return value.data.ip;
+      //     }
+      //   }
+      // }
+    },
+    {
+      name: 'City Alpha',
+      type: 'bar',
+      data: [{value: 517, ip: '222.11.11.120', itemStyle: {color: 'rgb(36,146,215)'}},
+      {value: 495, ip: '194.1.239.124', itemStyle: {color: 'rgb(232,124,57)'}},
+      {value: 188, ip: '147.43.12.215', itemStyle: {color: 'rgb(166,197,57)'}},
+      {value: 177, ip: '104.244.14.252', itemStyle: {color: 'rgb(134,143,245)'}},
+      {value: 150, ip: '49.156.170.241', itemStyle: {color: 'rgb(182,142,217)'}}],
+      barWidth: '20%',
+      label: {
+        normal: {
+          show: true,
+          formatter: function(value) {
+            return value.data.ip;
+          }
         }
       }
     }
-  }]
+  ]
 };
 if (option && typeof option === "object") {
     myChart.setOption(option, true);
