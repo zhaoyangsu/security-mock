@@ -16,7 +16,7 @@ option = {
   color: ['rgb(247,132,58)','rgb(36,146,215)'],
   title: {
     left: '7%',
-    text: 'Wheater Statistics',
+    text: 'TOP威胁源主机',
     textStyle: {color: 'rgb(117,240,255)'}
   },
   // linear gradient background color

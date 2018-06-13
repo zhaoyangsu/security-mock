@@ -36,28 +36,49 @@
   <div style='display:flex; justify-content:center;'>
     <!-- <img draggable="false" style="height:300px; margin-top:100px; margin-right:50px;" src="public/bar.png"> -->
     <!-- margin-top:100px; -->
-    <div id="nestedPie" style="position: relative; margin-right:50px; height:500px; width:700px;">
+    <div class="container" style="width:800px; margin-right:50px;">
+      <div id="doughnut" style="position: relative; height:380px; margin-bottom: 20px;">
+      </div>
+      <div id="circlerose" style="position: relative; height:380px; margin-bottom: 20px;">
+      </div>
+      <div id="lineGraph" style="position: relative; height:380px; margin-bottom: 20px;">
+      </div>
+      <div id="nestedPie" style="position: relative; height:380px; margin-bottom: 20px;">
+      </div>
     </div>
-    <!-- <div id="map-container" style="display:flex; justify-content:center;">
-      <div style='display:flex; flex-direction: column;'>
-        <img style="height:200px;" src="public/americas.svg">
-        <img style="height:190px; margin-top:20px; margin-left:10px;" src="public/aus.svg">
+    <div class="container">
+      <div style="display:flex; justify-content:center;">
+        <div style='display:flex; flex-direction: column;'>
+          <img style="height:200px;" src="public/americas.svg">
+          <img style="height:190px; margin-top:20px; margin-left:10px;" src="public/aus.svg">
+        </div>
+        <div id="map" style="position: relative; height: 450px; width: 550px;"></div>
+        <div style='display:flex; flex-direction: column;'>
+          <img style="height:200px;" src="public/europe.svg">
+          <img style="height:200px; margin-top:20px;" src="public/africa.svg">
+        </div>
       </div>
-      <div id="map" style="position: relative; height: 450px; width: 550px;"></div>
-      <div style='display:flex; flex-direction: column;'>
-        <img style="height:200px;" src="public/europe.svg">
-        <img style="height:200px; margin-top:20px;" src="public/africa.svg">
+      <div id="jsGrid" style="margin-top:30px;"></div>
+    </div>
+    <div class="container" style="width:800px; margin-left:50px;">
+      <div id="barGraph" style="position: relative; height:380px; margin-bottom: 20px;">
       </div>
-    </div> -->
-    <div style="height:400px; width:500px; margin-left:50px;" id="barGraph"></div>
-  </div>
-  <div id="app" class="container">
-    <div id="jsGrid" style="margin-top:12px;"></div>
+      <div id="colorGraph" style="position: relative; height:380px; margin-bottom: 20px;">
+      </div>
+      <div id="singleGraph" style="position: relative; height:380px; margin-bottom: 20px;">
+      </div>
+      <div id="dupecirclerose" style="position: relative; height:380px; margin-bottom: 20px;">
+      </div>
+    </div>
   </div>
 </body>
 <script src="navbar.js"></script>
-<script src="table.js"></script>
-<!-- <script src="map.js"></script> -->
+<script src="grid.js"></script>
+<script src="map.js"></script>
 <script src="nestedpie.js"></script>
+<script src="linegraph.js"></script>
+<script src="circlerose.js"></script>
+<script src="doughnut.js"></script>
+<script src="plainbars.js"></script>
 <script src="bargraph.js"></script>
 </html>
