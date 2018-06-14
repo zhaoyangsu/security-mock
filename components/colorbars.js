@@ -1,16 +1,7 @@
-var dom = document.getElementById("barGraph");
-var myChart = echarts.init(dom);
-
-var worldIcons = {
-  'China': 'public/flags/China.png',
-  'Russia': 'public/flags/Russian_Federation.png',
-  'America': 'public/flags/United_States_of_America.png',
-  'SouthKorea': 'public/flags/South_Korea.png',
-  'Japan': 'public/flags/Japan.png'
-};
-
+var dom = document.getElementById("colorGraph");
+var graph1 = echarts.init(dom);
 option = {
-  // color: ['rgb(247,132,58)','rgb(36,146,215)'],
+  color: ['rgb(247,132,58)','rgb(36,146,215)'],
   title: {
     left: '7%',
     text: 'TOP威胁源主机',
@@ -38,36 +29,9 @@ option = {
     inverse: true,
     data: ['China','Russia', 'South_Korea', 'America', 'Japan'],
     axisLabel: {
-      formatter: function(value) {
-        return '{' + value + '| }\n{value|' + value + '}';
-      },
       margin: 20,
       // #ffffff hide with  color
       color: 'rgb(9,31,66)',
-      rich: {
-        value: {
-          lineHeight: 0,
-          align: 'center',
-          // fontSize 1 to hide the text, use icons
-          fontSize: 1,
-          height: 20,
-        },
-        China: {
-          backgroundColor: {image: worldIcons.China}
-        },
-        Russia: {
-          backgroundColor: {image: worldIcons.Russia}
-        },
-        South_Korea: {
-          backgroundColor: {image: worldIcons.SouthKorea}
-        },
-        America: {
-          backgroundColor: {image: worldIcons.America}
-        },
-        Japan: {
-          backgroundColor: {image: worldIcons.Japan}
-        }
-      }
     }
   },
   series: [
@@ -81,17 +45,6 @@ option = {
       barWidth: '20%',
       data: [600,600,600,600,600],
       animation: false,
-      // label: {
-      //   normal: {
-      //     show: true,
-      //     position: 'right',
-      //     color: 'rgb(36,146,215)',
-      //     formatter: function(value) {
-      //       // console.log(value)
-      //       return value.data.ip;
-      //     }
-      //   }
-      // }
     },
     {
       name: 'City Alpha',
@@ -113,5 +66,4 @@ option = {
     }
   ]
 };
-
-myChart.setOption(option, true);
+graph1.setOption(option, true);

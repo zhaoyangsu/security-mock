@@ -14,7 +14,7 @@ option = {
     title: {
       left: '7%',
       text: 'TOP威胁源主机',
-      textStyle: {color: 'rgb(117,240,255)'}
+      textStyle: {color: '#fff'}
     },
     // legend: {
     //     orient: 'vertical',

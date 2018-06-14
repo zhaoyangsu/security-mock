@@ -4,8 +4,10 @@ var graph1 = echarts.init(dom);
 option = {
   title : {
       text: '南丁格尔玫瑰图',
-      subtext: '纯属虚构',
-      x:'center'
+      // subtext: '纯属虚构',
+      // x:'center',
+      textStyle: {color: '#fff'},
+      left: '7%'
   },
   backgroundColor: {
     type: 'linear',

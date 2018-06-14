@@ -2,6 +2,11 @@ var dom = document.getElementById("doughnut");
 var myChart = echarts.init(dom);
 
 option = {
+  title: {
+    text: '折线图堆叠',
+    textStyle: {color: '#fff'},
+    left: '7%'
+  },
   // linear gradient background color
   backgroundColor: {
     type: 'linear',
