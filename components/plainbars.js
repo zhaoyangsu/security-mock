@@ -1,7 +1,6 @@
-var dom = document.getElementById("singleGraph");
+var dom = document.getElementById("plainbars");
 var graph2 = echarts.init(dom);
 option = {
-  color: ['rgb(247,132,58)','rgb(36,146,215)'],
   title: {
     left: '7%',
     text: 'TOP威胁源主机',
@@ -17,8 +16,6 @@ option = {
       offset: 1, color: 'rgb(3,22,51)' // color at 100% position
     }],
   },
-  // margin-left for legend
-  grid: { left: 100 },
   xAxis: {
     type: 'value',
     axisLabel: {formatter: '{value}', color:"rgb(125,149,193)"},
@@ -43,21 +40,30 @@ option = {
       barGap:'-100%',
       barCategoryGap:'40%',
       barWidth: '20%',
-      data: [600,600,600,600,600],
+      data: [50,50,50,50],
       animation: false,
     },
     {
       name: 'City Alpha',
       type: 'bar',
-      data: [{value: 517, ip: '222.11.11.120', itemStyle: {color: 'rgb(36,146,215)'}},
-      {value: 495, ip: '194.1.239.124', itemStyle: {color: 'rgb(232,124,57)'}},
-      {value: 188, ip: '147.43.12.215', itemStyle: {color: 'rgb(166,197,57)'}},
-      {value: 177, ip: '104.244.14.252', itemStyle: {color: 'rgb(134,143,245)'}},
-      {value: 150, ip: '49.156.170.241', itemStyle: {color: 'rgb(182,142,217)'}}],
-      barWidth: '20%',
+      data: [
+        {value: 22, ip: '222.11.11.120'},
+        {value: 21, ip: '194.1.239.124'},
+        {value: 21, ip: '147.43.12.215'},
+        {value: 20, ip: '104.244.14.252'}
+      ],
+      itemStyle: {
+        normal: {color: 'rgb(38,196,192)'}
+      },
+      barWidth: '25%',
+      // two labels can do the number on the right
       label: {
         normal: {
           show: true,
+          position: 'top',
+          distance: 7,
+          fontSize: 15,
+          offset: [-60,0],
           formatter: function(value) {
             return value.data.ip;
           }

@@ -1,7 +1,6 @@
 var dom = document.getElementById("colorGraph");
 var graph1 = echarts.init(dom);
 option = {
-  color: ['rgb(247,132,58)','rgb(36,146,215)'],
   title: {
     left: '7%',
     text: 'TOP威胁源主机',
@@ -17,8 +16,6 @@ option = {
       offset: 1, color: 'rgb(3,22,51)' // color at 100% position
     }],
   },
-  // margin-left for legend
-  grid: { left: 100 },
   xAxis: {
     type: 'value',
     axisLabel: {formatter: '{value}', color:"rgb(125,149,193)"},
