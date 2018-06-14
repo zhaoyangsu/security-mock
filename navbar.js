@@ -6,4 +6,3 @@ Vue.component('nav-bar', {
 new Vue({ el: '#navbar' })
 
 // <a class="navbar-item" href="chart.html">Vulnerability scan (Chart)</a>
-// <a class="navbar-item" href="network.html">Asset Management (Network)</a>
