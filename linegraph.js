@@ -4,6 +4,16 @@ option = {
   title: {
       text: '折线图堆叠'
   },
+  // linear gradient background color
+  backgroundColor: {
+    type: 'linear',
+    x: 0, y: 0, x2: 0, y2: 1,
+    colorStops: [{
+      offset: 0, color: 'rgb(9,31,66)' // color at 0% position
+    }, {
+      offset: 1, color: 'rgb(3,22,51)' // color at 100% position
+    }],
+  },
   tooltip: {
       trigger: 'axis'
   },

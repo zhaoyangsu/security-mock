@@ -1,8 +1,5 @@
 var dom = document.getElementById("barGraph");
 var myChart = echarts.init(dom);
-var app = {};
-option = null;
-app.title = '极坐标系下的堆叠柱状图';
 
 var worldIcons = {
   'China': 'flags/China.png',
@@ -13,7 +10,7 @@ var worldIcons = {
 };
 
 option = {
-  color: ['rgb(247,132,58)','rgb(36,146,215)'],
+  // color: ['rgb(247,132,58)','rgb(36,146,215)'],
   title: {
     left: '7%',
     text: 'TOP威胁源主机',
@@ -116,6 +113,5 @@ option = {
     }
   ]
 };
-if (option && typeof option === "object") {
-    myChart.setOption(option, true);
-}
+
+myChart.setOption(option, true);
