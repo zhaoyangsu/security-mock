@@ -2,11 +2,11 @@ var dom = document.getElementById("barGraph");
 var myChart = echarts.init(dom);
 
 var worldIcons = {
-  'China': 'flags/China.png',
-  'Russia': 'flags/Russian_Federation.png',
-  'America': 'flags/United_States_of_America.png',
-  'SouthKorea': 'flags/South_Korea.png',
-  'Japan': 'flags/Japan.png'
+  'China': 'public/flags/China.png',
+  'Russia': 'public/flags/Russian_Federation.png',
+  'America': 'public/flags/United_States_of_America.png',
+  'SouthKorea': 'public/flags/South_Korea.png',
+  'Japan': 'public/flags/Japan.png'
 };
 
 option = {
