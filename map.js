@@ -23,8 +23,10 @@ var map = new Datamap({
   setProjection: function (element) {
     var projection = d3.geo.mercator()
       .center([98.49, 43.09]) // always in [East Latitude, North Longitude]
-      .scale(500)
-      .translate([210,200]);
+      // change size of map
+      .scale(600)
+      // move map x, y
+      .translate([310,170]);
     var path = d3.geo.path().projection(projection);
     return { path: path, projection: projection };
   },
