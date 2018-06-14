@@ -1,5 +1,41 @@
 var dom = document.getElementById("doughnut");
-var myChart = echarts.init(dom);
+var doughnut = echarts.init(dom);
+option = {
+  title: {
+    text: '折线图堆叠',
+    textStyle: {color: '#fff'},
+    left: '7%'
+  },
+  // linear gradient background color
+  backgroundColor: {
+    type: 'linear',
+    x: 0, y: 0, x2: 0, y2: 1,
+    colorStops: [{
+      offset: 0, color: 'rgb(9,31,66)' // color at 0% position
+    }, {
+      offset: 1, color: 'rgb(3,22,51)' // color at 100% position
+    }],
+  },
+  series: [
+    {
+      type:'pie',
+    }
+  ]
+};
+
+doughnut.setOption(option, true);
+
+fetch('http://10.145.89.154:3128/threats/type_pers')
+  .then(response => response.json())
+  .then(jsondata => {
+    formattedArray = [];
+    jsondata.forEach(function(obj, index) {
+      a = {value: obj.pers};
+      if (index == 0) {
+        a = {value: obj.pers, name: 23};
+      }
+      formattedArray.push(a)
+    })
 
 option = {
   title: {
@@ -32,7 +68,7 @@ option = {
           show: true,
           position: 'center',
           textStyle: {
-              fontSize: '100',
+              fontSize: '70',
               fontWeight: 'bold'
           }
         }
@@ -42,15 +78,11 @@ option = {
               show: false
           }
       },
-      data:[
-          {value:335, name:'23'},
-          {value:310},
-          {value:234},
-          {value:135},
-          {value:1548}
-      ]
+      data:formattedArray
     }
   ]
 };
 
-myChart.setOption(option, true);
+console.log(formattedArray)
+doughnut.setOption(option, true);
+  })
