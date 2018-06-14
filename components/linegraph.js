@@ -3,7 +3,7 @@ var graph = echarts.init(dom);
 
 option = {
   title: {
-    text: '折线图堆叠',
+    text: '威胁事件趋势',
     textStyle: {color: '#fff'},
     left: '7%'
   },

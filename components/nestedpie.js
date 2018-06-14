@@ -2,9 +2,6 @@
 
 var dom = document.getElementById("nestedpie");
 var myChart = echarts.init(dom);
-var app = {};
-option = null;
-app.title = '极坐标系下的堆叠柱状图';
 
 option = {
     tooltip: {
@@ -13,7 +10,7 @@ option = {
     },
     title: {
       left: '7%',
-      text: 'TOP威胁源主机',
+      text: '威胁类型分布',
       textStyle: {color: '#fff'}
     },
     // legend: {
@@ -101,6 +98,4 @@ option = {
     ]
 };
 
-if (option && typeof option === "object") {
-    myChart.setOption(option, true);
-}
+myChart.setOption(option, true);

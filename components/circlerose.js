@@ -3,7 +3,7 @@ var graph1 = echarts.init(dom);
 
 option = {
   title : {
-      text: '南丁格尔玫瑰图',
+      text: '威胁等级分布',
       // subtext: '纯属虚构',
       // x:'center',
       textStyle: {color: '#fff'},

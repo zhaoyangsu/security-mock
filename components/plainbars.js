@@ -3,7 +3,7 @@ var graph2 = echarts.init(dom);
 option = {
   title: {
     left: '7%',
-    text: 'TOP威胁源主机',
+    text: '高危区域',
     textStyle: {color: '#fff'}
   },
   // linear gradient background color
