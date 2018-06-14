@@ -61,9 +61,11 @@ option = {
         normal: {
           show: true,
           position: 'top',
-          distance: 7,
+          // distance to host graphic element
+          distance: 3,
+          align: 'left',
           fontSize: 15,
-          offset: [-60,0],
+          offset: [-70,0],
           formatter: function(value) {
             return value.data.ip;
           }
