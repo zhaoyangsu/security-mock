@@ -1,6 +1,6 @@
 // var top5data = [{"SrcIP": "61.0.0.115", "DestIP": "62.0.0.115", "count": "4", "percent": "22.222222", "_tc": "18"}, {"SrcIP": "172.16.21.139", "DestIP": "172.16.21.141", "count": "4", "percent": "22.222222", "_tc": "18"}, {"SrcIP": "172.16.21.139", "DestIP": "172.16.21.140", "count": "3", "percent": "16.666667", "_tc": "18"}, {"SrcIP": "10.211.1.14", "DestIP": "198.178.124.50", "count": "3", "percent": "16.666667", "_tc": "18"}, {"SrcIP": "6.6.3.148", "DestIP": "174.37.172.101", "count": "1", "percent": "5.555556", "_tc": "18"}];
 
-var dom = document.getElementById("nestedPie");
+var dom = document.getElementById("nestedpie");
 var myChart = echarts.init(dom);
 var app = {};
 option = null;
@@ -44,12 +44,11 @@ option = {
         },
         labelLine: {
           normal: {
-              show: false
+            show: false
           }
         },
         data:[
           {value:335, name:'直达', selected:true},
-          {value:679, name:'营销广告'},
           {value:1548, name:'搜索引擎'}
         ]
       },
@@ -60,7 +59,7 @@ option = {
         // center: ['0%','0%'],
         label: {
           normal: {
-            formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+            formatter: '{a|{a}}{abg|}\n{hr|}\n {per|{d}%}',
             // backgroundColor: '#eee',
             // borderColor: '#aaa',
             borderWidth: 1,
@@ -68,7 +67,7 @@ option = {
             // color: "#fff",
             rich: {
               a: {
-                  color: '#999',
+                  color: '#fff',
                   lineHeight: 22,
                   align: 'center'
               },
@@ -92,14 +91,11 @@ option = {
           }
         },
         data:[
-            {value:335, name:'直达'},
-            {value:310, name:'邮件营销'},
-            {value:234, name:'联盟广告'},
-            {value:135, name:'视频广告'},
-            {value:1048, name:'百度'},
-            {value:251, name:'谷歌'},
-            {value:147, name:'必应'},
-            {value:102, name:'其他'}
+          {value:335, name:'直达'},
+          {value:310, name:'邮件营销'},
+          {value:234, name:'联盟广告'},
+          {value:135, name:'视频广告'},
+          {value:658, name:'百度'},
         ]
       }
     ]
