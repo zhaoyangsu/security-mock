@@ -20,19 +20,6 @@ option = {
       trigger: 'item',
       formatter: "{a} <br/>{b} : {c} ({d}%)"
   },
-  toolbox: {
-      show : true,
-      feature : {
-          mark : {show: true},
-          dataView : {show: true, readOnly: false},
-          magicType : {
-              show: true,
-              type: ['pie', 'funnel']
-          },
-          restore : {show: true},
-          saveAsImage : {show: true}
-      }
-  },
   calculable : true,
   series : [
     {
@@ -52,6 +39,19 @@ option = {
       ]
     }
   ]
+  // toolbox: {
+  //   show : true,
+  //   feature : {
+  //     mark : {show: true},
+  //     dataView : {show: true, readOnly: false},
+  //     magicType : {
+  //         show: true,
+  //         type: ['pie', 'funnel']
+  //     },
+  //     restore : {show: true},
+  //     saveAsImage : {show: true}
+  //   }
+  // },
 };
 graph1.setOption(option, true);
 

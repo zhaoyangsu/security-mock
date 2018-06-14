@@ -67,10 +67,5 @@ option = {
       data:[320, 332, 301, 334, 390, 330, 320]
     },
   ],
-  // toolbox: {
-  //   feature: {
-  //     saveAsImage: {}
-  //   }
-  // }
 };
 graph.setOption(option, true);
