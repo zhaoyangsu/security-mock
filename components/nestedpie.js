@@ -2,49 +2,7 @@
 
 var dom = document.getElementById("nestedpie");
 var nestedpie = echarts.init(dom);
-
-option = {
-    title: {
-      left: '7%',
-      text: '威胁类型分布',
-      textStyle: {color: '#fff'}
-    },
-    backgroundColor: {
-      type: 'linear',
-      x: 0, y: 0, x2: 0, y2: 1,
-      colorStops: [{
-        offset: 0, color: 'rgb(9,31,66)' // color at 0% position
-      }, {
-        offset: 1, color: 'rgb(3,22,51)' // color at 100% position
-      }],
-    },
-    series: [
-      {
-        name:'访问来源',
-        type:'pie',
-        selectedMode: 'single',
-        radius: [0, '30%'],
-        label: {
-          normal: {position: 'inner'}
-        },
-        labelLine: {
-          normal: {
-            show: false
-          }
-        },
-        data:[
-          {value:335, name:'直达', selected:true},
-          {value:1548, name:'搜索引擎'}
-        ]
-      },
-      {
-        // name:'访问来源',
-        type:'pie',
-      }
-    ]
-};
-
-nestedpie.setOption(option, true);
+nestedpie.setOption({}, true);
 
 fetch('http://10.145.89.154:3128/threats/type_pers')
   .then(response => response.json())
