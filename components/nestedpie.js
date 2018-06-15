@@ -2,7 +2,22 @@
 
 var dom = document.getElementById("nestedpie");
 var nestedpie = echarts.init(dom);
-nestedpie.setOption({}, true);
+nestedpie.setOption({
+  title: {
+    left: '7%',
+    text: '威胁类型分布',
+    textStyle: {color: '#fff'}
+  },
+  backgroundColor: {
+    type: 'linear',
+    x: 0, y: 0, x2: 0, y2: 1,
+    colorStops: [{
+      offset: 0, color: 'rgb(9,31,66)' // color at 0% position
+    }, {
+      offset: 1, color: 'rgb(3,22,51)' // color at 100% position
+    }],
+  },
+}, true);
 
 fetch('http://10.145.89.154:3128/threats/type_pers')
   .then(response => response.json())

@@ -1,7 +1,23 @@
 var dom = document.getElementById("flagbar");
 var flagbar = echarts.init(dom);
 // for longer callbacks need an intial setOption?
-//flagbar.setOption({}, true);
+flagbar.setOption({
+  title: {
+    left: '7%',
+    text: 'TOP威胁源主机',
+    textStyle: {color: '#fff'}
+  },
+  // linear gradient background color
+  backgroundColor: {
+    type: 'linear',
+    x: 0, y: 0, x2: 0, y2: 1,
+    colorStops: [{
+      offset: 0, color: 'rgb(9,31,66)' // color at 0% position
+    }, {
+      offset: 1, color: 'rgb(3,22,51)' // color at 100% position
+    }],
+  },
+}, true);
 
 // 10.145.89.154:8888/threats/src/top5
 fetch('https://api.myjson.com/bins/9l7uu')
