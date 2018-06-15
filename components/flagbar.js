@@ -1,5 +1,5 @@
-var dom = document.getElementById("barGraph");
-var myChart = echarts.init(dom);
+var dom = document.getElementById("flagBar");
+var flagbar = echarts.init(dom);
 
 var worldIcons = {
   'China': 'public/flags/China.png',
@@ -119,4 +119,4 @@ option = {
   ]
 };
 
-myChart.setOption(option, true);
+flagbar.setOption(option, true);
