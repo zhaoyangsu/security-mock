@@ -35,8 +35,8 @@ fetch('https://api.myjson.com/bins/106pri')
       yAxisFlag.push(obj.Country);
       formattedArray.push(a)
     })
-    console.log(formattedArray)
-    console.log(yAxisFlag)
+    // console.log(formattedArray)
+    // console.log(yAxisFlag)
     var worldIcons = {
       'China': 'public/flags/China.png',
       'Russia': 'public/flags/Russian_Federation.png',
