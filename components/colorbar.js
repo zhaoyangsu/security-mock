@@ -19,11 +19,11 @@ colorbar.setOption({
 }, true);
 
 // 10.145.89.154:8888/threats/asset/top4
-fetch('https://api.myjson.com/bins/106pri')
+fetch('https://api.myjson.com/bins/j1fji')
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];
-    //console.log(jsondata)
+    console.log(jsondata)
     // loop through colorArray to apply various colors to bar graph
     var colorArray = ["rgb(36,146,215)","rgb(232,124,57)","rgb(166,197,57)","rgb(134,143,245)","rgb(182,142,217)"];
     jsondata.forEach(function(obj, index) {
@@ -33,6 +33,7 @@ fetch('https://api.myjson.com/bins/106pri')
       a = {value: parseInt(obj.count), SrcIP: obj.SrcIP, itemStyle: {color:colorArray[index]}};
       formattedArray.push(a)
     })
+    console.log(formattedArray)
 
     option = {
       title: {
