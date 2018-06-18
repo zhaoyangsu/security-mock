@@ -9,14 +9,13 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
   <!-- Bulma 0.6.2-->
   <link rel="stylesheet" href="css/bulma.min.css" />
-  <script src="public/vue.js"></script>
 </head>
 <body style="min-width:1700px;">
   <script src="public/d3.v3.min.js"></script>
   <script src="public/topojson.v1.min.js"></script>
   <script src="public/datamaps.chn.js"></script>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="public/jquery-3.3.1.min.js"></script>
   <link type="text/css" rel="stylesheet" href="public/jsgrid.css" />
   <link type="text/css" rel="stylesheet" href="css/jsgrid-theme.css" />
   <script type="text/javascript" src="public/jsgrid.js"></script>
@@ -24,9 +23,28 @@
   <script type="text/javascript" src="public/echarts.js"></script>
 
   <link rel="stylesheet" type="text/css" href="css/admin.css">
-  <div id="navbar">
-    <nav-bar></nav-bar>
-  </div>
+
+  <nav class="navbar is-white">
+    <div class="navbar-brand" style="align-items:center;"><img style="height:50px; margin-left:1vw; margin-right:5px;" src="public/huawei.svg"> CSSC</div>
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item brand-text" href="index.html">Threat Home</a>
+        <div class="navbar-burger burger" data-target="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div id="navMenu" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="grid.html">Threat analysis (Table)</a>
+          <a class="navbar-item" href="maps.html">Situation Awareness (Maps)</a>
+          <a class="navbar-item" href="test.html">Single Page Test</a>
+          <a class="navbar-item" href="bigscreen.html">Threat Intelligence (Big Screen)</a>
+        </div>
+      </div>
+    </div>
+  </nav>
   <!-- how to draw lines on a div without regard to where the map is-->
   <!-- <svg id="data-line-container" width="100%" height="100%">
     <line class="data-line" x1="125" y1="133" x2="584" y2="238"/>
@@ -75,7 +93,6 @@
     </div>
   </div>
 </body>
-<script src="navbar.js"></script>
 <script src="grid.js"></script>
 <script src="map.js"></script>
 <script src="components/nestedpie.js"></script>
