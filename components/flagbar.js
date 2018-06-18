@@ -20,21 +20,30 @@ flagbar.setOption({
 }, true);
 
 // 10.145.89.154:8888/threats/src/top5
-fetch('https://api.myjson.com/bins/9l7uu')
+fetch('https://api.myjson.com/bins/106pri')
   .then(response => response.json())
   .then(jsondata => {
-    // formattedArray = [];
-    // jsondata.forEach(function(obj, index) {
-    //   a = {value: parseInt(obj.count), name: obj.EventName};
-    //   formattedArray.push(a)
-    // })
-    console.log(jsondata)
+    formattedArray = [];
+    yAxisFlag = [];
+    //console.log(jsondata)
+    var colorArray = ["rgb(36,146,215)","rgb(232,124,57)","rgb(166,197,57)","rgb(134,143,245)","rgb(182,142,217)"];
+    jsondata.forEach(function(obj, index) {
+      if (!obj.Country) {
+        obj.Country = "China";
+      }
+      a = {value: parseInt(obj.count), Country: obj.Country, SrcIP: obj.SrcIP, itemStyle: {color:colorArray[index]}};
+      yAxisFlag.push(obj.Country);
+      formattedArray.push(a)
+    })
+    console.log(formattedArray)
+    console.log(yAxisFlag)
     var worldIcons = {
       'China': 'public/flags/China.png',
       'Russia': 'public/flags/Russian_Federation.png',
-      'America': 'public/flags/United_States_of_America.png',
+      'United_States': 'public/flags/United_States_of_America.png',
       'SouthKorea': 'public/flags/South_Korea.png',
-      'Japan': 'public/flags/Japan.png'
+      'Japan': 'public/flags/Japan.png',
+      'India': 'public/flags/India.png'
     };
     option = {
       title: {
@@ -62,7 +71,7 @@ fetch('https://api.myjson.com/bins/9l7uu')
       yAxis: {
         type: 'category',
         inverse: true,
-        data: ['China','Russia', 'South_Korea', 'America', 'Japan'],
+        data: yAxisFlag,
         axisLabel: {
           formatter: function(value) {
             return '{' + value + '| }\n{value|' + value + '}';
@@ -87,11 +96,14 @@ fetch('https://api.myjson.com/bins/9l7uu')
             South_Korea: {
               backgroundColor: {image: worldIcons.SouthKorea}
             },
-            America: {
-              backgroundColor: {image: worldIcons.America}
+            United_States: {
+              backgroundColor: {image: worldIcons.United_States}
             },
             Japan: {
               backgroundColor: {image: worldIcons.Japan}
+            },
+            India: {
+              backgroundColor: {image: worldIcons.India}
             }
           }
         }
@@ -105,30 +117,12 @@ fetch('https://api.myjson.com/bins/9l7uu')
           barGap:'-100%',
           barCategoryGap:'40%',
           barWidth: '20%',
-          data: [600,600,600,600,600],
+          data: [10,10,10,10,10],
           animation: false,
-          // label: {
-          //   normal: {
-          //     show: true,
-          //     position: 'right',
-          //     color: 'rgb(36,146,215)',
-          //     formatter: function(value) {
-          //       // console.log(value)
-          //       return value.data.ip;
-          //     }
-          //   }
-          // }
         },
         {
-          // name: 'City Alpha',
           type: 'bar',
-          data: [
-            {value: 517, ip: '222.11.11.120', itemStyle: {color: 'rgb(36,146,215)'}},
-            {value: 495, ip: '194.1.239.124', itemStyle: {color: 'rgb(232,124,57)'}},
-            {value: 188, ip: '147.43.12.215', itemStyle: {color: 'rgb(166,197,57)'}},
-            {value: 177, ip: '104.244.14.252', itemStyle: {color: 'rgb(134,143,245)'}},
-            {value: 150, ip: '49.156.170.241', itemStyle: {color: 'rgb(182,142,217)'}}
-          ],
+          data: formattedArray,
           barWidth: '20%',
           label: {
             normal: {
@@ -139,7 +133,7 @@ fetch('https://api.myjson.com/bins/9l7uu')
               align: 'left',
               fontSize: 15,
               formatter: function(value) {
-                return value.data.ip;
+                return value.data.SrcIP;
               }
             }
           }

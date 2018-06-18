@@ -44,7 +44,6 @@ option = {
       animation: false,
     },
     {
-      name: 'City Alpha',
       type: 'bar',
       data: [{value: 517, ip: '222.11.11.120', itemStyle: {color: 'rgb(36,146,215)'}},
       {value: 495, ip: '194.1.239.124', itemStyle: {color: 'rgb(232,124,57)'}},
