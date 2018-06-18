@@ -18,20 +18,17 @@ plainbar.setOption({
   },
 }, true);
 
-// 10.145.89.154:8888/threats/asset/top4
-fetch('https://api.myjson.com/bins/106pri')
+// 10.145.89.154:8888/threats/area/top4
+fetch('https://api.myjson.com/bins/y1rpa')
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];
-    //console.log(jsondata)
 
     jsondata.forEach(function(obj, index) {
-      if (!obj.Country) {
-        obj.Country = "China";
-      }
-      a = {value: parseInt(obj.count), SrcIP: obj.SrcIP};
+      a = {value: obj.pers, SrcIP: obj.onThreatArea};
       formattedArray.push(a)
     })
+
     option = {
       title: {
         left: '7%',
@@ -78,12 +75,7 @@ fetch('https://api.myjson.com/bins/106pri')
         {
           name: 'City Alpha',
           type: 'bar',
-          data: [
-            {value: 22, ip: '222.11.11.120'},
-            {value: 21, ip: '194.1.239.124'},
-            {value: 21, ip: '147.43.12.215'},
-            {value: 20, ip: '104.244.14.252'}
-          ],
+          data: formattedArray,
           itemStyle: {
             normal: {color: 'rgb(38,196,192)'}
           },
@@ -99,7 +91,7 @@ fetch('https://api.myjson.com/bins/106pri')
               fontSize: 15,
               offset: [-70,0],
               formatter: function(value) {
-                return value.data.ip;
+                return value.data.SrcIP;
               }
             }
           }
