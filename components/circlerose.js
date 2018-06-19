@@ -1,5 +1,7 @@
 var dom = document.getElementById("circlerose");
 var graph1 = echarts.init(dom);
+var CONFIG = require('../config.json');
+
 
 var data1 = [{value:10, name:'rose1'},
   {value:5, name:'rose2'},
@@ -11,8 +13,14 @@ var data1 = [{value:10, name:'rose1'},
   {value:40, name:'rose8'}];
 var data2 = [{value:100, name:'very high'}]
 
+
+var port = CONFIG.Port;
+var host = CONFIG.Host;
+var ns = "/threats/area/top4";
+var endpoint = "http://" + host + ":" + port + ns;
+
 // 10.145.89.154:5000/threats/area/top4
-fetch('https://api.myjson.com/bins/1ed9e6')
+fetch(endpoint)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];

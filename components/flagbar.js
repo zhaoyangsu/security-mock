@@ -1,5 +1,8 @@
 var dom = document.getElementById("flagbar");
 var flagbar = echarts.init(dom);
+var CONFIG = require('../config.json');
+
+
 // for longer callbacks need an intial setOption?
 flagbar.setOption({
   title: {
@@ -19,8 +22,14 @@ flagbar.setOption({
   },
 }, true);
 
+
+var port = CONFIG.Port;
+var host = CONFIG.Host;
+var ns = "/threats/src/top5";
+var endpoint = "http://" + host + ":" + port + ns;
+
 // 10.145.89.154:8888/threats/src/top5
-fetch('https://api.myjson.com/bins/106pri')
+fetch(endpoint)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];

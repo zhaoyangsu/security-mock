@@ -1,5 +1,8 @@
 var dom = document.getElementById("linegraph");
 var linegraph = echarts.init(dom);
+var CONFIG = require('../config.json');
+
+
 linegraph.setOption({
   title: {
     left: '7%',
@@ -18,8 +21,14 @@ linegraph.setOption({
   },
 }, true);
 
+
+var port = CONFIG.Port;
+var host = CONFIG.Host;
+var ns = "/threats/trend/month";
+var endpoint = "http://" + host + ":" + port + ns;
+
 // 10.145.89.154:8888/threats/trend/month
-fetch('https://api.myjson.com/bins/1gmhry')
+fetch(endpoint)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];

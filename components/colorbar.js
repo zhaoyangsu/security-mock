@@ -1,5 +1,8 @@
 var dom = document.getElementById("colorbar");
 var colorbar = echarts.init(dom);
+var CONFIG = require('../config.json');
+
+
 colorbar.setOption({
   title: {
     left: '7%',
@@ -18,8 +21,14 @@ colorbar.setOption({
   },
 }, true);
 
+
+var port = CONFIG.Port;
+var host = CONFIG.Host;
+var ns = "/threats/asset/top4";
+var endpoint = "http://" + host + ":" + port + ns;
+
 // 10.145.89.154:8888/threats/asset/top4
-fetch('https://api.myjson.com/bins/fgtwu')
+fetch(endpoint)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];
