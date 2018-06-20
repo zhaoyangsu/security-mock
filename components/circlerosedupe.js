@@ -1,16 +1,3 @@
-var dom = document.getElementById("circlerose");
-var graph1 = echarts.init(dom);
-
-var data1 = [{value:10, name:'rose1'},
-  {value:5, name:'rose2'},
-  {value:15, name:'rose3'},
-  {value:25, name:'rose4'},
-  {value:20, name:'rose5'},
-  {value:35, name:'rose6'},
-  {value:30, name:'rose7'},
-  {value:40, name:'rose8'}];
-var data2 = [{value:100, name:'very high'}]
-
 // 10.145.89.154:5000/threats/area/top4
 fetch('https://api.myjson.com/bins/1ed9e6')
   .then(response => response.json())
@@ -20,8 +7,10 @@ fetch('https://api.myjson.com/bins/1ed9e6')
       a = {value: obj.pers, name: obj.EventLevel};
       formattedArray.push(a)
     })
-    // console.log(formattedArray);
-    option1 = {
+    console.log(formattedArray);
+    var dom = document.getElementById("dupecirclerose");
+    var graph2 = echarts.init(dom);
+    option2 = {
       title : {
           text: '威胁等级分布',
           // subtext: '纯属虚构',
@@ -53,5 +42,5 @@ fetch('https://api.myjson.com/bins/1ed9e6')
         }
       ]
     };
-    graph1.setOption(option1, true);
-  })
+    graph2.setOption(option2, true);
+});
