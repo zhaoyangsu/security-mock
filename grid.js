@@ -28,6 +28,7 @@ $("#jsGrid").jsGrid({
       console.log(args.item)
     }
 });
+$('.jsgrid-control-field').first().css("width","63.5px");
 //
 // var threatsUrl = 'http:10.145.89.154:3128/threats';
 //  fetch(threatsUrl)
