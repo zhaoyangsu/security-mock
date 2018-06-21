@@ -384,113 +384,111 @@ function initNetWork()
    });
 }
 /*加载地图数据*/
+// can you load json using another method, Failed to load Cross origin requests
 function loadMapData () {
-var xhttp = new XMLHttpRequest();
-xhttp.open('GET', 'world-lowres.geo_c.json');
-xhttp.onload = function () {
-_loadData(xhttp.responseText);
-};
-xhttp.send();
+  var xhttp = new XMLHttpRequest();
+  xhttp.open('GET', 'world-lowres.geo_c.json');
+  xhttp.onload = function () {
+  _loadData(xhttp.responseText);
+  };
+  xhttp.send();
 }
 
 function _loadData (json) {
 JSON.parse(json).features.forEach(function (feature) {
+  //每一个国家实质上就是一个ShapeNode
+  var node = new twaver.ShapeNode(feature.id);
+  dataBox.add(node);
+  //设置每个国家区域的颜色，填充色等属性  vector.gradient  vector.gradient.color
+  node.setStyle('vector.fill', true)
+  .setStyle('vector.fill.color', '#1D2945')
+  .setStyle('vector.outline.color', '#12C3C0')
+  .setStyle('select.color', '#FFFFFF')
+  .setStyle('vector.outline.width', 0.8);
+  node.setMovable(false);
+  node.setClient('type','');
+  node.setClient('continent',feature.properties.continent);
+  node.setToolTip(feature.properties.name);
 
-//每一个国家实质上就是一个ShapeNode
-var node = new twaver.ShapeNode(feature.id);
-dataBox.add(node);
-//设置每个国家区域的颜色，填充色等属性  vector.gradient  vector.gradient.color
-node.setStyle('vector.fill', true)
-.setStyle('vector.fill.color', '#1D2945')
-.setStyle('vector.outline.color', '#12C3C0')
-.setStyle('select.color', '#FFFFFF')
-.setStyle('vector.outline.width', 0.8);
-node.setMovable(false);
-node.setClient('type','');
-node.setClient('continent',feature.properties.continent);
-node.setToolTip(feature.properties.name);
-
-//根据读取的地图数据，设置shapeNode的绘制方式，这块代码可不用理解，也不需要任何改动。
-var segments = new twaver.List();
-var points = new twaver.List();
-if (feature.geometry.type === 'MultiPolygon') {
- feature.geometry.coordinates.forEach(function (polygon) {
- polygon.forEach(function (coordinate) {
+  //根据读取的地图数据，设置shapeNode的绘制方式，这块代码可不用理解，也不需要任何改动。
+  var segments = new twaver.List();
+  var points = new twaver.List();
+  if (feature.geometry.type === 'MultiPolygon') {
+   feature.geometry.coordinates.forEach(function (polygon) {
+   polygon.forEach(function (coordinate) {
+     segments.add('moveto');
+     coordinate.forEach(function (point, i) {
+     if (i !== 0) {
+       segments.add('lineto');
+     }
+     points.add({ x: point[0] / 10 + 230, y: -point[1] / 10 + 1087 });
+     });
+   });
+   });
+  } else if (feature.geometry.type === 'Polygon') {
+   feature.geometry.coordinates.forEach(function (coordinate) {
    segments.add('moveto');
    coordinate.forEach(function (point, i) {
-   if (i !== 0) {
+     if (i !== 0) {
      segments.add('lineto');
-   }
-   points.add({ x: point[0] / 10 + 230, y: -point[1] / 10 + 1087 });
+     }
+     points.add({ x: point[0] / 10 + 230, y: -point[1] / 10 + 1087 });
    });
- });
- });
-} else if (feature.geometry.type === 'Polygon') {
- feature.geometry.coordinates.forEach(function (coordinate) {
- segments.add('moveto');
- coordinate.forEach(function (point, i) {
-   if (i !== 0) {
-   segments.add('lineto');
-   }
-   points.add({ x: point[0] / 10 + 230, y: -point[1] / 10 + 1087 });
- });
- });
-} else {
- console.log(feature.geometry.type);
-}
-node.setSegments(segments);
-node.setPoints(points);
-if(feature.properties.continent == "Africa")
-{
- node.setStyle('vector.fill.color', '#0E283C');
- //.setStyle('vector.gradient', 'radial.center')
-   //.setStyle('vector.gradient.color', '#492D3A')
- africaBox.add(node);
-}
-else if(feature.properties.continent == "North America")
-{
- //#342534  .setStyle('vector.fill.color', '#1D2945')
- node.setStyle('vector.fill.color', '#342534')
- .setStyle('vector.gradient', 'radial.center')
-   .setStyle('vector.gradient.color', '#492D3A')
- .setStyle('vector.join', 'round');
- /*node.setStyle('shadow.blur',20);
- vector.join
-      node.setStyle('shadow.xoffset',5);
-      node.setStyle('shadow.yoffset',5);#09302F
-  node.setStyle('select.color',twaver.Colors.orange);*/
- northAmericaBox.add(node);
-}
-else if(feature.properties.continent == "South America")
-{
- node.setStyle('vector.fill.color', '#09302F');
- //.setStyle('vector.gradient', 'linear.east')
-   //.setStyle('vector.gradient.color', '#492D3A')
- southAmericaBox.add(node);
-}
-else if(feature.properties.continent == "Asia")
-{
- node.setStyle('vector.fill.color', '#30302E')
- .setStyle('vector.gradient', 'radial.center')
-   .setStyle('vector.gradient.color', '#072E27');
- asiaBox.add(node);
-}
-else if(feature.properties.continent == "Europe")
-{
- node.setStyle('vector.fill.color', '#072A29')
- .setStyle('vector.gradient', 'radial.center')
-   .setStyle('vector.gradient.color', '#072E27');
- europeBox.add(node);
-}
-else if(feature.properties.continent == "Oceania")
-{
- node.setStyle('vector.fill.color', '#07442C')
- .setStyle('vector.gradient', 'radial.center')
-   .setStyle('vector.gradient.color', '#072E27');
- oceaniaBox.add(node);
-
-}
-
+   });
+  } else {
+   console.log(feature.geometry.type);
+  }
+  node.setSegments(segments);
+  node.setPoints(points);
+  if(feature.properties.continent == "Africa")
+  {
+   node.setStyle('vector.fill.color', '#0E283C');
+   //.setStyle('vector.gradient', 'radial.center')
+     //.setStyle('vector.gradient.color', '#492D3A')
+   africaBox.add(node);
+  }
+  else if(feature.properties.continent == "North America")
+  {
+   //#342534  .setStyle('vector.fill.color', '#1D2945')
+   node.setStyle('vector.fill.color', '#342534')
+   .setStyle('vector.gradient', 'radial.center')
+     .setStyle('vector.gradient.color', '#492D3A')
+   .setStyle('vector.join', 'round');
+   /*node.setStyle('shadow.blur',20);
+   vector.join
+        node.setStyle('shadow.xoffset',5);
+        node.setStyle('shadow.yoffset',5);#09302F
+    node.setStyle('select.color',twaver.Colors.orange);*/
+   northAmericaBox.add(node);
+  }
+  else if(feature.properties.continent == "South America")
+  {
+   node.setStyle('vector.fill.color', '#09302F');
+   //.setStyle('vector.gradient', 'linear.east')
+     //.setStyle('vector.gradient.color', '#492D3A')
+   southAmericaBox.add(node);
+  }
+  else if(feature.properties.continent == "Asia")
+  {
+   node.setStyle('vector.fill.color', '#30302E')
+   .setStyle('vector.gradient', 'radial.center')
+     .setStyle('vector.gradient.color', '#072E27');
+   asiaBox.add(node);
+  }
+  else if(feature.properties.continent == "Europe")
+  {
+   node.setStyle('vector.fill.color', '#072A29')
+   .setStyle('vector.gradient', 'radial.center')
+     .setStyle('vector.gradient.color', '#072E27');
+   europeBox.add(node);
+  }
+  else if(feature.properties.continent == "Oceania")
+  {
+   node.setStyle('vector.fill.color', '#07442C')
+   .setStyle('vector.gradient', 'radial.center')
+     .setStyle('vector.gradient.color', '#072E27');
+   oceaniaBox.add(node);
+  }
 });
 var oceaniaCountry = oceaniaBox.getDataById("AU");
 // console.log(oceaniaCountry.getCenterLocation ());
