@@ -19,7 +19,7 @@ nestedpie.setOption({
   },
 }, true);
 
-fetch('http://10.145.89.154:3128/threats/type_pers')
+fetch(nestedpieEndpoint)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];

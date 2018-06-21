@@ -1,5 +1,4 @@
-// 10.145.89.154:5000/threats/area/top4
-fetch('https://api.myjson.com/bins/1ed9e6')
+fetch(circlerosedupeEndpoint)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];

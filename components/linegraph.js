@@ -18,8 +18,7 @@ linegraph.setOption({
   },
 }, true);
 
-// 10.145.89.154:8888/threats/trend/month
-fetch('https://api.myjson.com/bins/1gmhry')
+fetch(linegraphEndpoint)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];

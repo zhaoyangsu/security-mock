@@ -11,8 +11,7 @@ var data1 = [{value:10, name:'rose1'},
   {value:40, name:'rose8'}];
 var data2 = [{value:100, name:'very high'}]
 
-// 10.145.89.154:5000/threats/area/top4
-fetch('https://api.myjson.com/bins/1ed9e6')
+fetch(circleroseEndpoint)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];
