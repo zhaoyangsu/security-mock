@@ -29,6 +29,11 @@
     user-select: none;
 }
 
+.jsgrid-grid-body {
+  overflow-x: auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
 
 .jsgrid-table {
     width: 100%;
