@@ -64,6 +64,7 @@ var dataBox = new twaver.ElementBox();
 var northAmericaBox = new twaver.ElementBox();
 var northAmericaNetWork = new twaver.vector.Network(northAmericaBox);
   var northAmericaView = northAmericaNetWork.getView();
+  console.log(northAmericaView)
 //南美洲地图
 var southAmericaBox = new twaver.ElementBox();
 var southAmericaNetWork = new twaver.vector.Network(southAmericaBox);
@@ -152,14 +153,15 @@ var changeZoomView = changeZoomNetWork.getView();
 var regionJson = JSON.parse(regionJson1);
 var valu = 0;
 var alaLevel=['2','5','3','3','5','1','1','1','5','4','4'];
- $(document).ready(function(){
-   //updateRefreshTime();
-    init();
-    window.onresize = doOnResize;
-    doOnResize();
- setInterval( playan,5000);
 
- });
+$(document).ready(function(){
+   //updateRefreshTime();
+  init();
+  window.onresize = doOnResize;
+  doOnResize();
+  setInterval( playan,5000);
+});
+
 function initfullscreen()
 {
  var searc = window.location.search;
@@ -168,6 +170,7 @@ function initfullscreen()
    toFullscreen("fullscreen");
  }
 }
+
 function init()
 {
   updateRefreshTime();
@@ -179,26 +182,9 @@ function init()
  //view.appendChild(div);
 }
 
-function ringChartController($scope) {
- $scope.threatScore = 45;
-
-   $scope.options = {
-       showText: true,
- //backgroundColor:'red',
-       colorThreshold: [0, 20, 40, 60, 80, 100],
-       colorSetTop: ['#72CE17', '#72CE17', '#06B5F7', '#FFCF04', '#FFB700', '#FF4621'],
-       colorSetBottom: ['#16B44A', '#16B44A', '#0392C8', '#E8C018', '#F7820D', '#E92820'],
-       textColorSet: ['#1FBE5C', '#1FBE5C', '#06B2F3', '#EDC314', '#F7820D', '#F21414']
-   };
-//$scope.options.backgroundColor ="white";
-$scope.options.backgroundColor = "#FBF7F7";
- $scope.options.ringWidth = "15";
-
-}
-
 function updateRefreshTime() {
-var nowTime = formateTime(new Date(), "yyyy-MM-dd hh:mm:ss");
-$("#refreshTimeValue").html(nowTime);
+  var nowTime = formateTime(new Date(), "yyyy-MM-dd hh:mm:ss");
+  $("#refreshTimeValue").html(nowTime);
 }
 
 /*
@@ -227,14 +213,27 @@ function initNetWork()
      var netPer = (width*scrollHeight)/(screenWidth*screenHeight)
      var continentHeight = screenHeight*1/5;
      var continentWidth = width*1/5;
+
    //初始化北美洲network
    northAmericaNetWork.setZoom(0.5);
    document.body.appendChild(northAmericaView);
    northAmericaNetWork.adjustBounds({x:0,y:2,width:continentWidth, height:continentHeight});
-   northAmericaNetWork.getView().style.backgroundColor = 'rgba(8,14,23,0.01)';//背景颜色
+   // northAmericaNetWork.getView().left = "40px";
+   // northAmericaNetWork.getView().right = "40px";
+
+   // northAmericaNetWork.getView().style.transform = "scale(0.7,0.7)";
+   // northAmericaNetWork.getView().top = "100px";
+
+   northAmericaView.left = "7%";
+   northAmericaView.style.left = '7%';
+
+   northAmericaView.style.marginLeft = '5%';
+   // this makes background translucent
+   northAmericaView.style.backgroundColor = 'rgba(8,14,23,0.01)';//背景颜色
    northAmericaNetWork.setDragToPan(false);//设置network是否可以拖拽移动
    twaver.Styles.setStyle('select.style', 'none');//设置选中的样式
    northAmericaNetWork.setScrollBarVisible(0);
+
    //初始化南美洲network
    southAmericaNetWork.setZoom(0.5);
    document.body.appendChild(southAmericaView);
@@ -244,6 +243,7 @@ function initNetWork()
    twaver.Styles.setStyle('select.style', 'none');//设置选中的样式
    southAmericaNetWork.centerByLogicalPoint(0.5*489,0.5*483);
    southAmericaNetWork.setScrollBarVisible(0);
+
     //初始化非洲network
    africaNetWork.setZoom(0.5);
    document.body.appendChild(africaView);
@@ -300,9 +300,7 @@ function initNetWork()
    var target = network.getElementAt(e);
    if(target instanceof twaver.Link && target.getClient('link.type') === 'flowLink') {
      target.s('link.width',2.5);
-   }
-   else
-   {
+   } else {
      window.flowLinks.forEach(function(link){
      link.s('link.width',1);
      });
@@ -384,7 +382,7 @@ function initNetWork()
    });
 }
 /*加载地图数据*/
-// can you load json using another method, Failed to load Cross origin requests
+// possible to load json using another method?, Failed to load Cross origin requests
 function loadMapData () {
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', 'world-lowres.geo_c.json');
