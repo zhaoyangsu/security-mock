@@ -18,8 +18,8 @@ nestedpie.setOption({
     }],
   },
 }, true);
-
-fetch(nestedpieEndpoint)
+console.log(endpoints.nestedpie)
+fetch(endpoints.nestedpie)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];

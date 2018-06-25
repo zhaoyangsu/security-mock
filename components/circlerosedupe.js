@@ -1,4 +1,4 @@
-fetch(circlerosedupeEndpoint)
+fetch(endpoints.circlerosedupe)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];
@@ -6,7 +6,7 @@ fetch(circlerosedupeEndpoint)
       a = {value: obj.pers, name: obj.DestArea};
       formattedArray.push(a)
     })
-    console.log(formattedArray);
+    // console.log(formattedArray);
     var dom = document.getElementById("dupecirclerose");
     var graph2 = echarts.init(dom);
     option2 = {

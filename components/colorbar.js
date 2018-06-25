@@ -18,7 +18,7 @@ colorbar.setOption({
   },
 }, true);
 
-fetch(colorbarEndpoint)
+fetch(endpoints.colorbar)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];
