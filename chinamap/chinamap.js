@@ -214,8 +214,8 @@ function initNetWork()
    // northAmericaNetWork.getView().style.transform = "scale(0.7,0.7)";
    // northAmericaNetWork.getView().top = "100px";
 
-   northAmericaView.left = "7%";
-   northAmericaView.style.left = '7%';
+   // northAmericaView.left = "7%";
+   // northAmericaView.style.left = '7%';
 
    // northAmericaView.style.marginLeft = '5%';
    // this makes background translucent
