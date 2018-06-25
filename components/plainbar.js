@@ -18,8 +18,7 @@ plainbar.setOption({
   },
 }, true);
 
-// 10.145.89.154:8888/threats/area/top4
-fetch('https://api.myjson.com/bins/y1rpa')
+fetch(plainbarEndpoint)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];

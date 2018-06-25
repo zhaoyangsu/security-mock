@@ -19,8 +19,7 @@ flagbar.setOption({
   },
 }, true);
 
-// 10.145.89.154:8888/threats/src/top5
-fetch('https://api.myjson.com/bins/106pri')
+fetch(flagbarEndpoint)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];
