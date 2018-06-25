@@ -145,11 +145,16 @@ var valu = 0;
 var alaLevel=['2','5','3','3','5','1','1','1','5','4','4'];
 
 $(document).ready(function(){
-   //updateRefreshTime();
-  init();
-  window.onresize = doOnResize;
-  doOnResize();
-  setInterval( playan,5000);
+  fetch(mapEndpoint)
+    .then(response => response.json())
+    .then(jsondata => {
+      regionJson = jsondata;
+      //updateRefreshTime();
+      init();
+      window.onresize = doOnResize;
+      doOnResize();
+      setInterval( playan,5000);
+    });
 });
 
 function initfullscreen()
