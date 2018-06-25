@@ -3,7 +3,7 @@ fetch(circlerosedupeEndpoint)
   .then(jsondata => {
     formattedArray = [];
     jsondata.forEach(function(obj, index) {
-      a = {value: obj.pers, name: obj.EventLevel};
+      a = {value: obj.pers, name: obj.DestArea};
       formattedArray.push(a)
     })
     console.log(formattedArray);
