@@ -18,7 +18,7 @@ linegraph.setOption({
   },
 }, true);
 
-fetch(linegraphEndpoint)
+fetch(endpoints.linegraph)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];

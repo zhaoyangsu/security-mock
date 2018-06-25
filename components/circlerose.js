@@ -11,7 +11,7 @@ var data1 = [{value:10, name:'rose1'},
   {value:40, name:'rose8'}];
 var data2 = [{value:100, name:'very high'}]
 
-fetch(circleroseEndpoint)
+fetch(endpoints.circlerose)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];

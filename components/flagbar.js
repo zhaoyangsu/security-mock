@@ -19,7 +19,7 @@ flagbar.setOption({
   },
 }, true);
 
-fetch(flagbarEndpoint)
+fetch(endpoints.flagbar)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];

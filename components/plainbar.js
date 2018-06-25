@@ -18,7 +18,7 @@ plainbar.setOption({
   },
 }, true);
 
-fetch(plainbarEndpoint)
+fetch(endpoints.plainbar)
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];
