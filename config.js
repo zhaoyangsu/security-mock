@@ -6,12 +6,14 @@ if (true) {
   linegraphEndpoint = "https://api.myjson.com/bins/1gmhry";
   plainbarEndpoint = "https://api.myjson.com/bins/y1rpa";
 } else {
-  circleroseEndpoint = "10.145.89.154:5000/threats/area/top4";
-  circlerosedupeEndpoint = "10.145.89.154:5000/threats/area/top4";
-  colorbarEndpoint = "10.145.89.154:8888/threats/asset/top4";
-  flagbarEndpoint = "10.145.89.154:8888/threats/src/top5";
-  linegraphEndpoint = "10.145.89.154:8888/threats/trend/month";
-  plainbarEndpoint = "10.145.89.154:8888/threats/area/top4";
+  server_china = "http://172.18.175.204:8080";
+  circleroseEndpoint = server_china + "/api/threats/level_pers";
+  circlerosedupeEndpoint = server_china + "/api/threats/area_pers";
+  colorbarEndpoint = server_china + "/api/threats/asset/top4";
+  flagbarEndpoint = server_china + "/api/threats/src/top5";
+  linegraphEndpoint = server_china + "/api/threats/trend/month";
+  plainbarEndpoint = server_china + "/api/threats/area/top4";
+  nestedpieEndpoint = server_china + "/api/threats/type_pers";
+  scoreEndpoint = server_china + "/api/threats/score";
+  mapEndpoint = server_china + "/api/threats/map";
 }
-
-nestedpieEndpoint = "http://10.145.89.154:3128/threats/type_pers";
