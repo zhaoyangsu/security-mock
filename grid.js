@@ -3,7 +3,7 @@ var threats = [{ "Category": "南湖云主机", "VDC": "南湖卫生监督所", 
 
 $("#jsGrid").jsGrid({
     width: "100%",
-    height: "580px",
+    height: "380px",
     inserting: true,
     editing: true,
     sorting: true,

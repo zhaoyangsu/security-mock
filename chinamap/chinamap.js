@@ -3,57 +3,46 @@ var myChart = echarts.init(dom);
 var app = {};
 
 var option = {
-     tooltip : {
-         trigger: 'item',
-         formatter: '{b}'
-     },
-     series : [
-         {
-             name: '中国',
-             type: 'map',
-             mapType: 'china',
-     //zoom:0.5,
-     //roam: true,
-     //scaleLimit:{min:0.8,max:1.1},
-             selectedMode : 'single',
-             itemStyle:{
-                 normal:{
-       borderWidth:0.5,
-                 borderColor:'#12C3C0',
-                 color: '#0E3678',
-       label:{show:false}
-       },
-                 emphasis:{label:{show:false}}
-             },
-             data:[
+  tooltip : {
+    trigger: 'item',
+    formatter: '{b}'
+  },
+  series : [{
+    name: '中国',
+    type: 'map',
+    mapType: 'china',
+    selectedMode : 'single',
+    itemStyle:{
+      normal:{
+      borderWidth:0.5,
+      borderColor:'#12C3C0',
+      color: '#0E3678',
+      label:{show:false}
+    },
+      emphasis:{label:{show:false}}
+    },
+    data:[]
+  }]
+};
+myChart.setOption(option);
 
-             ]
-         }
-     ]
- };
- myChart.setOption(option);
-
-myChart.on(echarts.config.EVENT.MAP_SELECTED,function(param)
-{
+myChart.on(echarts.config.EVENT.MAP_SELECTED,function(param) {
  var data = [param.event.layerX,param.event.layerY]
  var geoCo = myChart.chart.map.getGeoByPos("china",data)
  var serData = option.series[0].data;
 
-   option.series[0].markPoint ={
-               itemStyle : {
-                   normal:{
-                       color:'red'
-                   }
-               },
-               data : [
-                   {name : 'poin', value : 'asd'}
-
-               ]
-           };
-   option.series[0].geoCoord =	{
-               'poin': geoCo
-           };
- myChart.setOption(option);
+option.series[0].markPoint = {
+  itemStyle : {
+    normal:{
+      color:'red'
+    }
+  },
+  data : [
+    {name : 'poin', value : 'asd'}
+  ]
+};
+option.series[0].geoCoord =	{'poin': geoCo};
+myChart.setOption(option);
 });
 var box = new twaver.ElementBox();
   var network = new twaver.vector.Network(box);
@@ -63,12 +52,13 @@ var dataBox = new twaver.ElementBox();
 //北美洲地图
 var northAmericaBox = new twaver.ElementBox();
 var northAmericaNetWork = new twaver.vector.Network(northAmericaBox);
-  var northAmericaView = northAmericaNetWork.getView();
-  console.log(northAmericaView)
+var northAmericaView = northAmericaNetWork.getView();
+
 //南美洲地图
 var southAmericaBox = new twaver.ElementBox();
 var southAmericaNetWork = new twaver.vector.Network(southAmericaBox);
-  var southAmericaView = southAmericaNetWork.getView();
+var southAmericaView = southAmericaNetWork.getView();
+
 //亚洲地图
 var asiaBox = new twaver.ElementBox();
 var asiaNetWork = new twaver.vector.Network(asiaBox);
@@ -209,7 +199,7 @@ function initNetWork()
      //console.log(viewBounds); {x: 0, y: 2, width: 1214, height: 810}
      // window.screen.height
      var screenHeight = 1000;
-     var screenWidth = 750;
+     var screenWidth = 1200;
      var netPer = (width*scrollHeight)/(screenWidth*screenHeight)
      var continentHeight = screenHeight*1/5;
      var continentWidth = width*1/5;
@@ -227,7 +217,7 @@ function initNetWork()
    northAmericaView.left = "7%";
    northAmericaView.style.left = '7%';
 
-   northAmericaView.style.marginLeft = '5%';
+   // northAmericaView.style.marginLeft = '5%';
    // this makes background translucent
    northAmericaView.style.backgroundColor = 'rgba(8,14,23,0.01)';//背景颜色
    northAmericaNetWork.setDragToPan(false);//设置network是否可以拖拽移动
@@ -238,6 +228,7 @@ function initNetWork()
    southAmericaNetWork.setZoom(0.5);
    document.body.appendChild(southAmericaView);
    southAmericaNetWork.adjustBounds({x:0,y:continentHeight,width:continentWidth, height:continentHeight});
+   // southAmericaView.style.marginLeft = '5%';
    southAmericaNetWork.getView().style.backgroundColor = 'rgba(8,14,23,0.01)';//背景颜色
    southAmericaNetWork.setDragToPan(false);//设置network是否可以拖拽移动
    twaver.Styles.setStyle('select.style', 'none');//设置选中的样式
@@ -248,11 +239,13 @@ function initNetWork()
    africaNetWork.setZoom(0.5);
    document.body.appendChild(africaView);
    africaNetWork.adjustBounds({x:0,y:continentHeight*2,width:continentWidth, height:continentHeight});
+   // africaView.style.marginLeft = '5%';
    africaNetWork.getView().style.backgroundColor = 'rgba(8,14,23,0.01)';//背景颜色
    africaNetWork.setDragToPan(false);//设置network是否可以拖拽移动
    twaver.Styles.setStyle('select.style', 'none');//设置选中的样式
    africaNetWork.centerByLogicalPoint(0.5*715,0.5*451);
    africaNetWork.setScrollBarVisible(0);
+
    //初始化亚洲network
    asiaNetWork.setZoom(0.5);
    document.body.appendChild(asiaView);
@@ -262,6 +255,7 @@ function initNetWork()
    twaver.Styles.setStyle('select.style', 'none');//设置选中的样式
    asiaNetWork.centerByLogicalPoint(0.5*960,0.5*324);
    asiaNetWork.setScrollBarVisible(0);
+
    //初始化欧洲network
    europeNetWork.setZoom(0.5);
    document.body.appendChild(europeView);
@@ -271,6 +265,7 @@ function initNetWork()
    twaver.Styles.setStyle('select.style', 'none');//设置选中的样式
    europeNetWork.centerByLogicalPoint(0.5*962,0.5*213);
    europeNetWork.setScrollBarVisible(0);
+
    //初始化大洋洲network
    oceaniaNetWork.setZoom(0.6);
    document.body.appendChild(oceaniaView);
@@ -296,7 +291,7 @@ function initNetWork()
    twaver.Styles.setStyle('select.style', 'none');//设置选中的样式
   // network.getView().appendChild(dom);
 
-  network.getView().addEventListener('mousemove', function(e){
+  network.getView().addEventListener('mousemove', function(e) {
    var target = network.getElementAt(e);
    if(target instanceof twaver.Link && target.getClient('link.type') === 'flowLink') {
      target.s('link.width',2.5);
@@ -353,7 +348,7 @@ function initNetWork()
       points.add(cps);
 
       return points;
-    }else if(link.getClient('link.type') === 'flowLink'){
+    } else if (link.getClient('link.type') === 'flowLink') {
      var f = linkUI.getFromPoint();
      var t = linkUI.getToPoint();
      var factor = link.getClient('factor') || 1;
@@ -376,7 +371,7 @@ function initNetWork()
      points.removeAt(1);
      points.add(cps);
      return points;
-   }else{
+   } else {
      return defaultPoints;
    }
    });
