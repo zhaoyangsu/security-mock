@@ -1,8 +1,5 @@
 var dom = document.getElementById("plainbar");
 var plainbar = echarts.init(dom);
-var CONFIG = require('../config.json');
-
-
 plainbar.setOption({
   title: {
     left: '7%',
@@ -21,15 +18,8 @@ plainbar.setOption({
   },
 }, true);
 
-
-var port = CONFIG.Port;
-var host = CONFIG.Host;
-var ns = "/threats/area/top4";
-var endpoint = "http://" + host + ":" + port + ns;
-
-
 // 10.145.89.154:8888/threats/area/top4
-fetch(endpoint)
+fetch('https://api.myjson.com/bins/y1rpa')
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];

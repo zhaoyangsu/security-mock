@@ -2,9 +2,6 @@
 
 var dom = document.getElementById("nestedpie");
 var nestedpie = echarts.init(dom);
-var CONFIG = require('../config.json');
-
-
 nestedpie.setOption({
   title: {
     left: '7%',
@@ -22,14 +19,7 @@ nestedpie.setOption({
   },
 }, true);
 
-
-var port = CONFIG.Port;
-var host = CONFIG.Host;
-var ns = "/threats/trend/month";
-var endpoint = "http://" + host + ":" + port + ns;
-
-
-fetch(endpoint)
+fetch('http://10.145.89.154:3128/threats/type_pers')
   .then(response => response.json())
   .then(jsondata => {
     formattedArray = [];
