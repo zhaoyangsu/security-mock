@@ -1,4 +1,4 @@
-var mapEndpoint = "http://172.18.175.204:8080/api/threats/map"
+var mapEndpoint = "https://api.myjson.com/bins/e972u"
 // https://api.myjson.com/bins/e972u
 var dom = document.getElementById("main");
 var myChart = echarts.init(dom);
@@ -205,8 +205,8 @@ function initNetWork()
      viewBounds = {x:0, y:2, width:width, height:height};
      //console.log(viewBounds); {x: 0, y: 2, width: 1214, height: 810}
      // window.screen.height
-     var screenHeight = 1000;
-     var screenWidth = 1200;
+     var screenHeight = 1200;
+     var screenWidth = 1500;
      var netPer = (width*scrollHeight)/(screenWidth*screenHeight)
      var continentHeight = screenHeight*1/5;
      var continentWidth = width*1/5;
