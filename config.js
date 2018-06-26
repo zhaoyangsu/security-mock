@@ -2,7 +2,7 @@ var endpoints = {};
 
 server_china = "http://172.18.175.204:8080";
 
-if (true) {
+if (false) {
   endpoints.circlerose = "https://api.myjson.com/bins/1ed9e6";
   endpoints.circlerosedupe = "https://api.myjson.com/bins/1ed9e6";
   endpoints.colorbar = "https://api.myjson.com/bins/fgtwu";
