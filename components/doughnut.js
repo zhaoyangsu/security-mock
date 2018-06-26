@@ -1,8 +1,7 @@
 var dom = document.getElementById("doughnut");
 var doughnut = echarts.init(dom);
 
-
-fetch(scoreEndpoint)
+fetch(endpoints.score)
   .then(response => response.json())
   .then(jsondata => {
 

@@ -1,3 +1,5 @@
+var mapEndpoint = "http://172.18.175.204:8080/api/threats/map"
+// https://api.myjson.com/bins/e972u
 var dom = document.getElementById("main");
 var myChart = echarts.init(dom);
 var app = {};

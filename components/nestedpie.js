@@ -18,7 +18,7 @@ nestedpie.setOption({
     }],
   },
 }, true);
-console.log(endpoints.nestedpie)
+
 fetch(endpoints.nestedpie)
   .then(response => response.json())
   .then(jsondata => {

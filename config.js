@@ -16,8 +16,7 @@ if (true) {
   endpoints.flagbar = server_china + "/api/threats/src/top5";
   endpoints.linegraph = server_china + "/api/threats/trend/month";
   endpoints.plainbar = server_china + "/api/threats/area/top4";
-  endpoints.score = server_china + "/api/threats/score";
-  endpoints.map = server_china + "/api/threats/map";
 }
-// didn't setup test api for this end
+// didn't setup test api for these end
 endpoints.nestedpie = server_china + "/api/threats/type_pers";
+endpoints.score = server_china + "/api/threats/score";
