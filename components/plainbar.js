@@ -24,7 +24,7 @@ fetch(endpoints.plainbar)
     formattedArray = [];
 
     jsondata.forEach(function(obj, index) {
-      a = {value: obj.pers, SrcIP: obj.onThreatArea};
+      a = {value: obj.count, SrcIP: obj.DestArea};
       formattedArray.push(a)
     })
 

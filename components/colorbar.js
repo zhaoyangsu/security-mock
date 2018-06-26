@@ -27,7 +27,7 @@ fetch(endpoints.colorbar)
     // "rgb(36,146,215)",
     var colorArray = ["rgb(232,124,57)","rgb(166,197,57)","rgb(134,143,245)","rgb(182,142,217)"];
     jsondata.forEach(function(obj, index) {
-      a = {value: parseInt(obj.count), SrcIP: obj.onThreatIP, itemStyle: {color:colorArray[index]}};
+      a = {value: parseInt(obj.count), SrcIP: obj.DestIP, itemStyle: {color:colorArray[index]}};
       formattedArray.push(a)
     })
 
