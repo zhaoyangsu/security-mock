@@ -205,8 +205,8 @@ function initNetWork()
      viewBounds = {x:0, y:2, width:width, height:height};
      //console.log(viewBounds); {x: 0, y: 2, width: 1214, height: 810}
      // window.screen.height
-     var screenHeight = 1200;
-     var screenWidth = 1500;
+     var screenHeight = 1800;
+     var screenWidth = 2100;
      var netPer = (width*scrollHeight)/(screenWidth*screenHeight)
      var continentHeight = screenHeight*1/5;
      var continentWidth = width*1/5;
