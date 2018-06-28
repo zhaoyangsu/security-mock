@@ -7,15 +7,6 @@ plainbar.setOption({
     textStyle: {color: '#fff'}
   },
   // linear gradient background color
-  backgroundColor: {
-    type: 'linear',
-    x: 0, y: 0, x2: 0, y2: 1,
-    colorStops: [{
-      offset: 0, color: 'rgb(9,31,66)' // color at 0% position
-    }, {
-      offset: 1, color: 'rgb(3,22,51)' // color at 100% position
-    }],
-  },
 }, true);
 
 fetch(endpoints.plainbar)
@@ -30,19 +21,13 @@ fetch(endpoints.plainbar)
 
     option = {
       title: {
-        left: '7%',
+        left: '30',
+        top: '7',
         text: '高危区域',
-        textStyle: {color: '#fff'}
-      },
-      // linear gradient background color
-      backgroundColor: {
-        type: 'linear',
-        x: 0, y: 0, x2: 0, y2: 1,
-        colorStops: [{
-          offset: 0, color: 'rgb(9,31,66)' // color at 0% position
-        }, {
-          offset: 1, color: 'rgb(3,22,51)' // color at 100% position
-        }],
+        textStyle: {
+          color: '#fff',
+          fontSize: "40"
+        }
       },
       xAxis: {
         type: 'value',
@@ -55,8 +40,8 @@ fetch(endpoints.plainbar)
         data: ['China','Russia', 'South_Korea', 'America', 'Japan'],
         axisLabel: {
           margin: 20,
-          // #ffffff hide with  color
-          color: 'rgb(9,31,66)',
+          // hide unwanted axis label with size
+          fontSize: 1,
         }
       },
       series: [
