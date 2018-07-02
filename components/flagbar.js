@@ -1,23 +1,5 @@
 var dom = document.getElementById("flagbar");
 var flagbar = echarts.init(dom);
-// for longer callbacks need an intial setOption?
-flagbar.setOption({
-  title: {
-    left: '7%',
-    text: 'TOP威胁源主机',
-    textStyle: {color: '#fff'}
-  },
-  // linear gradient background color
-  backgroundColor: {
-    type: 'linear',
-    x: 0, y: 0, x2: 0, y2: 1,
-    colorStops: [{
-      offset: 0, color: 'rgb(9,31,66)' // color at 0% position
-    }, {
-      offset: 1, color: 'rgb(3,22,51)' // color at 100% position
-    }],
-  },
-}, true);
 
 fetch(endpoints.flagbar)
   .then(response => response.json())
@@ -35,7 +17,7 @@ fetch(endpoints.flagbar)
       formattedArray.push(a)
     })
     // console.log(formattedArray)
-    // console.log(yAxisFlag)
+    console.log(yAxisFlag)
     var worldIcons = {
       'China': 'public/flags/China.png',
       'Russia': 'public/flags/Russian_Federation.png',
@@ -61,7 +43,7 @@ fetch(endpoints.flagbar)
         }],
       },
       // margin-left for legend
-      grid: { left: 100 },
+      grid: { left: 60 },
       xAxis: {
         type: 'value',
         axisLabel: {formatter: '{value}', color:"rgb(125,149,193)"},
@@ -76,7 +58,6 @@ fetch(endpoints.flagbar)
             return '{' + value + '| }\n{value|' + value + '}';
           },
           margin: 20,
-          // #ffffff hide with  color
           color: 'rgb(9,31,66)',
           rich: {
             value: {

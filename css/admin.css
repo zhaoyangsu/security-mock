@@ -15,16 +15,16 @@ nav.navbar {
 }
 
 .label-yanzhong {
-  color: #ff4c4c;
+    color: #ff4c4c
 }
 .label-gaowei {
-  color: #f07f33;
+    color: #F07F33
 }
 .label-zhongwei {
-  color: #edd818;
+	color: #EDD818
 }
 .label-diwei {
-  color: #19c2be;
+color: #19C2BE
 }
 
 #data-line-container {
@@ -149,7 +149,7 @@ animation: pulse 3s ease infinite; */
 .card .content {
   font-size: 14px;
 }
-.card-footer-item {
+.card-footer-item {w
   font-size: 14px;
   font-weight: 700;
   color: #8F99A3;
@@ -164,6 +164,7 @@ animation: pulse 3s ease infinite; */
   overflow-y: scroll;
 }
 
+
 .banner-logo {
   margin-bottom: -50px;
   margin-top: 20px;
@@ -171,6 +172,8 @@ animation: pulse 3s ease infinite; */
   font-size: 20px;
 }
 
+
+/* add this for jsgrid. Maybe there is better to solve this problem. */
 .jsgrid-grid-body {
   overflow: hidden;
 }
