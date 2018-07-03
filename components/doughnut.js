@@ -1,10 +1,10 @@
 var dom = document.getElementById("doughnut");
 var doughnut = echarts.init(dom);
 
-fetch(endpoints.score)
-  .then(response => response.json())
-  .then(jsondata => {
-
+// fetch(endpoints.score)
+//   .then(response => response.json())
+//   .then(jsondata => {
+  jsondata = "43";
   var option = {
     title: {
       text: '折线图堆叠',
@@ -57,5 +57,5 @@ fetch(endpoints.score)
     ]
   };
   doughnut.setOption(option, true);
-  console.log(jsondata);
-  });
+  // console.log(jsondata);
+  // });
