@@ -10,6 +10,7 @@ if (true) {
   endpoints.linegraph = "https://api.myjson.com/bins/1gmhry";
   endpoints.plainbar = "https://api.myjson.com/bins/16la2m";
   endpoints.grid = "https://api.myjson.com/bins/qytm6";
+  endpoints.nestedpie = "https://api.myjson.com/bins/s3dqc";
 } else {
   endpoints.circlerose = server_china + "/api/threats/level_pers";
   endpoints.circlerosedupe = server_china + "/api/threats/area_pers";
@@ -17,7 +18,7 @@ if (true) {
   endpoints.flagbar = server_china + "/api/threats/src/top5";
   endpoints.linegraph = server_china + "/api/threats/trend/month";
   endpoints.plainbar = server_china + "/api/threats/area/top4";
+  endpoints.nestedpie = server_china + "/api/threats/type_pers";
 }
 // didn't setup test api for these end
-endpoints.nestedpie = server_china + "/api/threats/type_pers";
 endpoints.score = server_china + "/api/threats/score";

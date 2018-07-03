@@ -1,7 +1,7 @@
 var dom = document.getElementById("plainbar");
 var plainbar = echarts.init(dom);
 
-function loadplainbar() {
+
   fetch(endpoints.plainbar)
     .then(response => response.json())
     .then(jsondata => {
@@ -58,10 +58,4 @@ function loadplainbar() {
         ]
       };
       plainbar.setOption(option, true);
-      setTimeout(() => {
-        loadplainbar();
-      }, 10000);
     })
-}
-
-loadplainbar();

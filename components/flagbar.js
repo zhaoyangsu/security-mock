@@ -17,7 +17,7 @@ fetch(endpoints.flagbar)
       formattedArray.push(a)
     })
     // console.log(formattedArray)
-    console.log(yAxisFlag)
+    // console.log(yAxisFlag)
     var worldIcons = {
       'China': 'public/flags/China.png',
       'Russia': 'public/flags/Russian_Federation.png',
