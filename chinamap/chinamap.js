@@ -147,14 +147,13 @@ var valu = 0;
 var alaLevel=['2','5','3','3','5','1','1','1','5','4','4'];
 
 $(document).ready(function(){
+  // 'https://api.myjson.com/bins/73st0'
   fetch(mapEndpoint)
     .then(response => response.json())
     .then(jsondata => {
       regionJson = jsondata;
-      //updateRefreshTime();
       init();
-      window.onresize = doOnResize;
-      doOnResize();
+      window.onresize = doOnResize();
       setInterval( playan,5000);
     });
 });
@@ -170,18 +169,11 @@ function initfullscreen()
 
 function init()
 {
-  updateRefreshTime();
   registerImage();
   initNetWork();
   // used to load other continents
   loadMapData();
   initContinent();
- //view.appendChild(div);
-}
-
-function updateRefreshTime() {
-  var nowTime = formateTime(new Date(), "yyyy-MM-dd hh:mm:ss");
-  $("#refreshTimeValue").html(nowTime);
 }
 
 /*
@@ -389,317 +381,287 @@ function loadMapData () {
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', 'world-lowres.geo_c.json');
   xhttp.onload = function () {
-  _loadData(xhttp.responseText);
+    _loadData(xhttp.responseText);
   };
   xhttp.send();
 }
 
 function _loadData (json) {
-JSON.parse(json).features.forEach(function (feature) {
-  //每一个国家实质上就是一个ShapeNode
-  var node = new twaver.ShapeNode(feature.id);
-  dataBox.add(node);
-  //设置每个国家区域的颜色，填充色等属性  vector.gradient  vector.gradient.color
-  node.setStyle('vector.fill', true)
-  .setStyle('vector.fill.color', '#1D2945')
-  .setStyle('vector.outline.color', '#12C3C0')
-  .setStyle('select.color', '#FFFFFF')
-  .setStyle('vector.outline.width', 0.8);
-  node.setMovable(false);
-  node.setClient('type','');
-  node.setClient('continent',feature.properties.continent);
-  node.setToolTip(feature.properties.name);
+  JSON.parse(json).features.forEach(function (feature) {
+    //每一个国家实质上就是一个ShapeNode
+    var node = new twaver.ShapeNode(feature.id);
+    dataBox.add(node);
+    //设置每个国家区域的颜色，填充色等属性  vector.gradient  vector.gradient.color
+    node.setStyle('vector.fill', true)
+    .setStyle('vector.fill.color', '#1D2945')
+    .setStyle('vector.outline.color', '#12C3C0')
+    .setStyle('select.color', '#FFFFFF')
+    .setStyle('vector.outline.width', 0.8);
+    node.setMovable(false);
+    node.setClient('type','');
+    node.setClient('continent',feature.properties.continent);
+    node.setToolTip(feature.properties.name);
 
-  //根据读取的地图数据，设置shapeNode的绘制方式，这块代码可不用理解，也不需要任何改动。
-  var segments = new twaver.List();
-  var points = new twaver.List();
-  if (feature.geometry.type === 'MultiPolygon') {
-   feature.geometry.coordinates.forEach(function (polygon) {
-   polygon.forEach(function (coordinate) {
+    //根据读取的地图数据，设置shapeNode的绘制方式，这块代码可不用理解，也不需要任何改动。
+    var segments = new twaver.List();
+    var points = new twaver.List();
+    if (feature.geometry.type === 'MultiPolygon') {
+     feature.geometry.coordinates.forEach(function (polygon) {
+     polygon.forEach(function (coordinate) {
+       segments.add('moveto');
+       coordinate.forEach(function (point, i) {
+       if (i !== 0) {
+         segments.add('lineto');
+       }
+       points.add({ x: point[0] / 10 + 230, y: -point[1] / 10 + 1087 });
+       });
+     });
+     });
+    } else if (feature.geometry.type === 'Polygon') {
+     feature.geometry.coordinates.forEach(function (coordinate) {
      segments.add('moveto');
      coordinate.forEach(function (point, i) {
-     if (i !== 0) {
+       if (i !== 0) {
        segments.add('lineto');
-     }
-     points.add({ x: point[0] / 10 + 230, y: -point[1] / 10 + 1087 });
+       }
+       points.add({ x: point[0] / 10 + 230, y: -point[1] / 10 + 1087 });
      });
-   });
-   });
-  } else if (feature.geometry.type === 'Polygon') {
-   feature.geometry.coordinates.forEach(function (coordinate) {
-   segments.add('moveto');
-   coordinate.forEach(function (point, i) {
-     if (i !== 0) {
-     segments.add('lineto');
-     }
-     points.add({ x: point[0] / 10 + 230, y: -point[1] / 10 + 1087 });
-   });
-   });
-  } else {
-   console.log(feature.geometry.type);
-  }
-  node.setSegments(segments);
-  node.setPoints(points);
-  if(feature.properties.continent == "Africa")
-  {
-   node.setStyle('vector.fill.color', '#0E283C');
-   //.setStyle('vector.gradient', 'radial.center')
-     //.setStyle('vector.gradient.color', '#492D3A')
-   africaBox.add(node);
-  }
-  else if(feature.properties.continent == "North America")
-  {
-   //#342534  .setStyle('vector.fill.color', '#1D2945')
-   node.setStyle('vector.fill.color', '#342534')
-   .setStyle('vector.gradient', 'radial.center')
-     .setStyle('vector.gradient.color', '#492D3A')
-   .setStyle('vector.join', 'round');
-   /*node.setStyle('shadow.blur',20);
-   vector.join
-        node.setStyle('shadow.xoffset',5);
-        node.setStyle('shadow.yoffset',5);#09302F
-    node.setStyle('select.color',twaver.Colors.orange);*/
-   northAmericaBox.add(node);
-  }
-  else if(feature.properties.continent == "South America")
-  {
-   node.setStyle('vector.fill.color', '#09302F');
-   //.setStyle('vector.gradient', 'linear.east')
-     //.setStyle('vector.gradient.color', '#492D3A')
-   southAmericaBox.add(node);
-  }
-  else if(feature.properties.continent == "Asia")
-  {
-   node.setStyle('vector.fill.color', '#30302E')
-   .setStyle('vector.gradient', 'radial.center')
-     .setStyle('vector.gradient.color', '#072E27');
-   asiaBox.add(node);
-  }
-  else if(feature.properties.continent == "Europe")
-  {
-   node.setStyle('vector.fill.color', '#072A29')
-   .setStyle('vector.gradient', 'radial.center')
-     .setStyle('vector.gradient.color', '#072E27');
-   europeBox.add(node);
-  }
-  else if(feature.properties.continent == "Oceania")
-  {
-   node.setStyle('vector.fill.color', '#07442C')
-   .setStyle('vector.gradient', 'radial.center')
-     .setStyle('vector.gradient.color', '#072E27');
-   oceaniaBox.add(node);
-  }
-});
-var oceaniaCountry = oceaniaBox.getDataById("AU");
-// console.log(oceaniaCountry.getCenterLocation ());
-//创建单独的一层，用于放置所有的link，目的是让link置于最上层
-var linkLayer = new twaver.Layer('link');
-//layer由layerBox进行管理，使用方法和DataBox类似
-box.getLayerBox().add(linkLayer);
-showRegionView();
-doAnimate();
+     });
+    } else {
+     console.log(feature.geometry.type);
+    }
+    node.setSegments(segments);
+    node.setPoints(points);
+    if(feature.properties.continent == "Africa") {
+     node.setStyle('vector.fill.color', '#0E283C');
+     //.setStyle('vector.gradient', 'radial.center')
+       //.setStyle('vector.gradient.color', '#492D3A')
+     africaBox.add(node);
+    }
+    else if(feature.properties.continent == "North America") {
+     node.setStyle('vector.fill.color', '#342534')
+     .setStyle('vector.gradient', 'radial.center')
+       .setStyle('vector.gradient.color', '#492D3A')
+     .setStyle('vector.join', 'round');
+     northAmericaBox.add(node);
+    }
+    else if(feature.properties.continent == "South America")
+    {
+     node.setStyle('vector.fill.color', '#09302F');
+     //.setStyle('vector.gradient', 'linear.east')
+       //.setStyle('vector.gradient.color', '#492D3A')
+     southAmericaBox.add(node);
+    }
+    else if(feature.properties.continent == "Asia")
+    {
+     node.setStyle('vector.fill.color', '#30302E')
+     .setStyle('vector.gradient', 'radial.center')
+       .setStyle('vector.gradient.color', '#072E27');
+     asiaBox.add(node);
+    }
+    else if(feature.properties.continent == "Europe")
+    {
+     node.setStyle('vector.fill.color', '#072A29')
+     .setStyle('vector.gradient', 'radial.center')
+       .setStyle('vector.gradient.color', '#072E27');
+     europeBox.add(node);
+    }
+    else if(feature.properties.continent == "Oceania")
+    {
+     node.setStyle('vector.fill.color', '#07442C')
+     .setStyle('vector.gradient', 'radial.center')
+       .setStyle('vector.gradient.color', '#072E27');
+     oceaniaBox.add(node);
+    }
+  });
+  var oceaniaCountry = oceaniaBox.getDataById("AU");
+  // console.log(oceaniaCountry.getCenterLocation ());
+  //创建单独的一层，用于放置所有的link，目的是让link置于最上层
+  var linkLayer = new twaver.Layer('link');
+  //layer由layerBox进行管理，使用方法和DataBox类似
+  box.getLayerBox().add(linkLayer);
+  showRegionView();
+  doAnimate();
 }
 
 //显示国家和区域
-function showRegionView()
-{
-/*var toolBarNode = new twaver.Node();
-toolBarNode.setImage('toolbar');
-toolBarNode.setLocation(5,5);
-toolBarNode.setSize(30,30);
-toolBarNode.setClient("cursor","pointer");
-toolBarNode.setMovable(false);
-toolBarNode.setToolTip("过滤条件");
-//toolBarNode.s("cursor","pointer");
-// node.setLayerId('link');getStyleProperties
-//console.log(toolBarNode.s("cursor"));
-//console.log(123);
-box.add(toolBarNode);*/
-//network.addInteractionListener(function (e) {console.log();});
- /*产生威胁的区域*/
-if(regionJson.length>0)
-{
- for ( var i = 0; i < regionJson.length; i++) {
+function showRegionView() {
+  if(regionJson.length>0) {
+   for ( var i = 0; i < regionJson.length; i++) {
 
- if(regionJson[i].type=="RegionNode"){
-   var node = new twaver.Node();
-   node.setImage('locate');
-   node.setClient('c_value',regionJson[i].threatSeverity);
-   //node.setClient('c_value',88);
-   node.setClient('c_name', regionJson[i].regionName);
-   //node.setSize(100,100);
-   node.setToolTip(regionJson[i].regionName);
-   //node.setClient('color', 'red');
-   node.setClient('radius', 100);
-   node.setClient('node_type', regionJson[i].type);
-   node.setSize(25,25);
-   node.setClient('r_state','unattacked');
-   //node.setClient('country',regionJson[i].regionCountry);116,40
-   var lonlat = [regionJson[i].lon,regionJson[i].lat];
-   node.setClient("lonlat",lonlat);
-   var geoCo = myChart.chart.map.getPosByGeo("china",lonlat)
-   var marg = $("#main").css("margin-left");
-   node.setLayerId('link');//将node放在linklayer中，防止被覆盖
-   //node.setCenterLocation(regionJson[i].locationX,
-   //		regionJson[i].locationY);
-   node.setCenterLocation(geoCo[0]+parseInt(marg),geoCo[1]);
-      //node.setCenterLocation(859, 212);
-   node.setMovable(false);//不可以拖动
-   //将区域信息加入缓存中
-   regionNodeCache[regionJson[i].regionName] = node;
-   //regionCache.push(node);
-   nodeCache[regionJson[i].elementId] = node;
-   box.add(node);
-   }
-   else if(regionJson[i].type=="AttackSourceNode")
-   {
-     var country = dataBox.getDataById(regionJson[i].userPropertites.TOPOELEM_COUNTRY_CODE);
-     if(country)
+   if(regionJson[i].type=="RegionNode"){
+     var node = new twaver.Node();
+     node.setImage('locate');
+     node.setClient('c_value',regionJson[i].threatSeverity);
+     //node.setClient('c_value',88);
+     node.setClient('c_name', regionJson[i].regionName);
+     //node.setSize(100,100);
+     node.setToolTip(regionJson[i].regionName);
+     //node.setClient('color', 'red');
+     node.setClient('radius', 100);
+     node.setClient('node_type', regionJson[i].type);
+     node.setSize(25,25);
+     node.setClient('r_state','unattacked');
+     //node.setClient('country',regionJson[i].regionCountry);116,40
+     var lonlat = [regionJson[i].lon,regionJson[i].lat];
+     node.setClient("lonlat",lonlat);
+     var geoCo = myChart.chart.map.getPosByGeo("china",lonlat)
+     var marg = $("#main").css("margin-left");
+     node.setLayerId('link');//将node放在linklayer中，防止被覆盖
+     //node.setCenterLocation(regionJson[i].locationX,
+     //		regionJson[i].locationY);
+     node.setCenterLocation(geoCo[0]+parseInt(marg),geoCo[1]);
+        //node.setCenterLocation(859, 212);
+     node.setMovable(false);//不可以拖动
+     //将区域信息加入缓存中
+     regionNodeCache[regionJson[i].regionName] = node;
+     //regionCache.push(node);
+     nodeCache[regionJson[i].elementId] = node;
+     box.add(node);
+     }
+     else if(regionJson[i].type=="AttackSourceNode")
      {
-       var continentName = country.getClient("continent");
-       nodeCache[regionJson[i].elementId] = continentNodeCache[continentName];
+       var country = dataBox.getDataById(regionJson[i].userPropertites.TOPOELEM_COUNTRY_CODE);
+       if(country)
+       {
+         var continentName = country.getClient("continent");
+         nodeCache[regionJson[i].elementId] = continentNodeCache[continentName];
+       }
+     }
+     else if(regionJson[i].type=="AttackLink")
+     {
+       attackCache.push(regionJson[i]);
      }
    }
-   else if(regionJson[i].type=="AttackLink")
-   {
-     attackCache.push(regionJson[i]);
-   }
- }
-}
+  }
 
 }
 
-function doAnimate()
-{
-for ( var i = 0; i < attackCache.length; i++)
-{
- if(nodeCache[attackCache[i].elementId])
- {
-   nodeCache[attackCache[i].elementId].playAnimate();
- }
- else
- {
-   var fromNode;
-   var toNode;
-   var fromNodeId =attackCache[i].fromNodeId;
-   var toNodeId =attackCache[i].toNodeId;
-   var fromOldNode = nodeCache[fromNodeId];
-   var toOldNode = nodeCache[toNodeId];
-   if(unvisbleNodeCache[fromNodeId])
+function doAnimate() {
+  for ( var i = 0; i < attackCache.length; i++) {
+   if(nodeCache[attackCache[i].elementId])
    {
-     fromNode = unvisbleNodeCache[fromNodeId];
+     nodeCache[attackCache[i].elementId].playAnimate();
    }
    else
    {
-     fromNode = new twaver.Node();
-     var fromCenter = fromOldNode.getCenterLocation();
-       fromNode.setImage('unvisble');
-       // fromNode.setId(fromNodeId);
-       fromNode.setSize(100, 100);
-       fromNode.setLayerId('link');
-       fromNode.setMovable(false);//不可以拖动
-       fromNode.setCenterLocation(fromCenter.x, fromCenter.y);
-       //unvisbleNodeCache.push(fromNode);
-       unvisbleNodeCache[fromNodeId] = fromNode;
-       box.add(fromNode);
-   }
-
-   if(unvisbleNodeCache[toNodeId])
-   {
-     toNode = unvisbleNodeCache[toNodeId];
-   }
-   else
-   {
-     toNode = new twaver.Node();
-     var toCenter = toOldNode.getCenterLocation();
-     toNode.setImage('unvisble');
-       // toNode.setId(toNodeId);
-       toNode.setSize(100, 100);
-       toNode.setLayerId('link');
-         toNode.setMovable(false);//不可以拖动
-       toNode.setCenterLocation(toCenter.x, toCenter.y);
-         //unvisbleNodeCache.push(toNode);
-         unvisbleNodeCache[toNodeId] = toNode;
-         box.add(toNode);
-   }
-     var link;
-     if(fromNodeId == toNodeId)
-     {
-       link = new FlowLink(attackCache[i].elementId,fromNode, fromNode);
-       link.s('link.width', 2.5);
+     var fromNode;
+     var toNode;
+     var fromNodeId =attackCache[i].fromNodeId;
+     var toNodeId =attackCache[i].toNodeId;
+     var fromOldNode = nodeCache[fromNodeId];
+     var toOldNode = nodeCache[toNodeId];
+     if(unvisbleNodeCache[fromNodeId]) {
+       fromNode = unvisbleNodeCache[fromNodeId];
      }
-     else
-     {
-       link = new FlowLink(attackCache[i].elementId,fromNode, toNode);
-       link.s('link.width', 1);
+     else {
+       fromNode = new twaver.Node();
+       var fromCenter = fromOldNode.getCenterLocation();
+         fromNode.setImage('unvisble');
+         // fromNode.setId(fromNodeId);
+         fromNode.setSize(100, 100);
+         fromNode.setLayerId('link');
+         fromNode.setMovable(false);//不可以拖动
+         fromNode.setCenterLocation(fromCenter.x, fromCenter.y);
+         //unvisbleNodeCache.push(fromNode);
+         unvisbleNodeCache[fromNodeId] = fromNode;
+         box.add(fromNode);
      }
-     // fixed color
-     var color = '#f2ba02';
-     link.setLayerId('link');
-     link.setClient('box',box);
-     link.setClient('factor',i);
-     link.setClient('tail',25);
-     link.setClient('tailRadius',3);
-     //设置线条为动态线还是静态线tailRadius
 
-     link.setClient('linkType',attackCache[i].linkType);
-     link.setClient('link.color',getColor(attackCache[i].threatSeverity));
-     link.setClient('link.type','flowLink');
-     link.s('link.color',getColor(attackCache[i].threatSeverity));
-     if(attackCache[i].linkType != "static")
-     {
-       link.s('link.pattern',[4,2]);
+     if(unvisbleNodeCache[toNodeId]) {
+       toNode = unvisbleNodeCache[toNodeId];
      }
-     link.s('arrow.to',true);
-     link.s('arrow.from',false);
-     link.s('arrow.from.shape','arrow.tail');
-     link.s('arrow.from.shadow',true);
-
-     link.s('arrow.from.shadow.blur',1);
-     link.s('arrow.from.shadow.color',getColor(attackCache[i].threatSeverity));
-     link.s('arrow.from.color',getColor(attackCache[i].threatSeverity));
-     link.s('arrow.from.at.edge',true);
-     link.s('arrow.from.xoffset',0.000001);
-     link.s('arrow.to.shape',"arrow.slant");
-     link.s('arrow.to.at.edge',false);
-     link.s('arrow.to.color',getColor(attackCache[i].threatSeverity));
-     //link.s("link.join","round");
-
-     //攻击源为区域的时候需要做偏移
-     if(fromOldNode.getClient("node_type")=="RegionNode")
-     {
-       link.s('link.from.yoffset',20);
-       //link.s('link.from.xoffset',3);
-       if(fromCenter.x>toCenter.x)
+     else {
+       toNode = new twaver.Node();
+       var toCenter = toOldNode.getCenterLocation();
+       toNode.setImage('unvisble');
+         // toNode.setId(toNodeId);
+         toNode.setSize(100, 100);
+         toNode.setLayerId('link');
+           toNode.setMovable(false);//不可以拖动
+         toNode.setCenterLocation(toCenter.x, toCenter.y);
+           //unvisbleNodeCache.push(toNode);
+           unvisbleNodeCache[toNodeId] = toNode;
+           box.add(toNode);
+     }
+       var link;
+       if(fromNodeId == toNodeId)
        {
-         link.s("link.to.xoffset",10);
+         link = new FlowLink(attackCache[i].elementId,fromNode, fromNode);
+         link.s('link.width', 2.5);
        }
        else
        {
-         link.s("link.to.xoffset",-10);
+         link = new FlowLink(attackCache[i].elementId,fromNode, toNode);
+         link.s('link.width', 1);
        }
-     }
-     else
-     {
-       if(fromCenter.x>toCenter.x)
+       // fixed color
+       var color = '#f2ba02';
+       link.setLayerId('link');
+       link.setClient('box',box);
+       link.setClient('factor',i);
+       link.setClient('tail',25);
+       link.setClient('tailRadius',3);
+       //设置线条为动态线还是静态线tailRadius
+
+       link.setClient('linkType',attackCache[i].linkType);
+       link.setClient('link.color',getColor(attackCache[i].threatSeverity));
+       link.setClient('link.type','flowLink');
+       link.s('link.color',getColor(attackCache[i].threatSeverity));
+       if(attackCache[i].linkType != "static")
        {
-         link.s("link.to.xoffset",16);
+         link.s('link.pattern',[4,2]);
+       }
+       link.s('arrow.to',true);
+       link.s('arrow.from',false);
+       link.s('arrow.from.shape','arrow.tail');
+       link.s('arrow.from.shadow',true);
+
+       link.s('arrow.from.shadow.blur',1);
+       link.s('arrow.from.shadow.color',getColor(attackCache[i].threatSeverity));
+       link.s('arrow.from.color',getColor(attackCache[i].threatSeverity));
+       link.s('arrow.from.at.edge',true);
+       link.s('arrow.from.xoffset',0.000001);
+       link.s('arrow.to.shape',"arrow.slant");
+       link.s('arrow.to.at.edge',false);
+       link.s('arrow.to.color',getColor(attackCache[i].threatSeverity));
+       //link.s("link.join","round");
+
+       //攻击源为区域的时候需要做偏移
+       if(fromOldNode.getClient("node_type")=="RegionNode")
+       {
+         link.s('link.from.yoffset',20);
+         //link.s('link.from.xoffset',3);
+         if(fromCenter.x>toCenter.x)
+         {
+           link.s("link.to.xoffset",10);
+         }
+         else
+         {
+           link.s("link.to.xoffset",-10);
+         }
        }
        else
        {
-         link.s("link.to.xoffset",-16);
+         if(fromCenter.x>toCenter.x)
+         {
+           link.s("link.to.xoffset",16);
+         }
+         else
+         {
+           link.s("link.to.xoffset",-16);
+         }
        }
-     }
-     link.setAnimate(3000);
-     if(attackCache[i].linkType == "static")
-     {
-       nodeCache[attackCache[i].elementId] = link;
-     }
-     box.add(link);
-     flowLinks.add(link);
-     link.playAnimate();
- }
-}
+       link.setAnimate(3000);
+       if(attackCache[i].linkType == "static")
+       {
+         nodeCache[attackCache[i].elementId] = link;
+       }
+       box.add(link);
+       flowLinks.add(link);
+       link.playAnimate();
+   }
+  }
 }
 
 function doOnResize()

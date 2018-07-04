@@ -37,7 +37,7 @@ fetch(endpoints.flagbar)
           fontSize: '24'
         },
         left: '35',
-        top: '7'
+        // top: '7'
       },
       // margin-left for legend
       grid: { left: 60 },

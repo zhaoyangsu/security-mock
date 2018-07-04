@@ -1,22 +1,5 @@
 var dom = document.getElementById("linegraph");
 var linegraph = echarts.init(dom);
-linegraph.setOption({
-  title: {
-    left: '7%',
-    text: '威胁事件趋势',
-    textStyle: {color: '#fff'}
-  },
-  // linear gradient background color
-  backgroundColor: {
-    type: 'linear',
-    x: 0, y: 0, x2: 0, y2: 1,
-    colorStops: [{
-      offset: 0, color: 'rgb(9,31,66)' // color at 0% position
-    }, {
-      offset: 1, color: 'rgb(3,22,51)' // color at 100% position
-    }],
-  },
-}, true);
 
 fetch(endpoints.linegraph)
   .then(response => response.json())
@@ -35,25 +18,21 @@ fetch(endpoints.linegraph)
     option = {
       title: {
         text: '威胁事件趋势',
-        textStyle: {color: '#fff'},
-        left: '7%'
-      },
-      // linear gradient background color
-      backgroundColor: {
-        type: 'linear',
-        x: 0, y: 0, x2: 0, y2: 1,
-        colorStops: [{
-          offset: 0, color: 'rgb(9,31,66)' // color at 0% position
-        }, {
-          offset: 1, color: 'rgb(3,22,51)' // color at 100% position
-        }],
+        textStyle: {
+		  color: '#fff',
+		  fontSize: '24'
+		},
+		left: '7',
+		top: '7'
       },
       tooltip: {
         trigger: 'axis'
       },
       legend: {
-        // data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
-        data:['邮件营销','视频广告','直接访问'],
+        // ,'周'
+        data:['月'],
+        right: 20,
+        top: 10,
         textStyle: {
           color:"#fff"
         }
@@ -81,23 +60,11 @@ fetch(endpoints.linegraph)
       },
       series: [
         {
-          name:'邮件营销',
+          name:'月',
           type:'line',
-          stack: '总量',
+          stack: '威胁数',
           data: formattedArray
         },
-        // {
-        //   name:'视频广告',
-        //   type:'line',
-        //   stack: '总量',
-        //   data:[150, 232, 201, 154, 190, 330, 410]
-        // },
-        // {
-        //   name:'直接访问',
-        //   type:'line',
-        //   stack: '总量',
-        //   data:[320, 332, 301, 334, 390, 330, 320]
-        // },
       ],
     };
     linegraph.setOption(option, true);
