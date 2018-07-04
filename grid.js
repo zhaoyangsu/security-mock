@@ -131,10 +131,10 @@ function grid() {
                 }
             },
             fields: [
-                {name: "威胁等级", type: "threatLevel"},
+                {name: "威胁等级", type: "threatLevel",width: "50px"},
                 {name: "受威胁局点", type: "text"},
                 {name: "受威胁IP", type: "text"},
-                {name: "威胁类型", type: "text"},
+                {name: "威胁类型", type: "text", width: "150px"},
                 {name: "威胁源", type: "text"},
                 {name: "时间", type: "text"},
                 {name: "状态", type: "text"},
@@ -148,6 +148,7 @@ function grid() {
                 }
             }
         });
+        sendReq();
         startRefresh();
     }
 
@@ -187,19 +188,17 @@ function grid() {
     var startRefresh = function () {
         if (requestInterval == null) {
             requestInterval = setInterval(sendReq,120000);
-            sendReq();
         }
 
         if (refreshInterval == null) {
             refreshInterval = setInterval(loadData,2000);
-            loadData()
         }
     }
 
-    jsGrid.mouseover(function(){
+    jsGrid.mouseenter(function(){
         stopRefresh();
-    }).mouseout(function(){
-        // startRefresh();
+    }).mouseleave(function(){
+        startRefresh();
     });
 
     init();
